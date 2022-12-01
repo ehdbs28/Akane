@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class AIBrain : MonoBehaviour
 {
-    public UnityEvent<Vector2> OnMovementCommand;
-
     [SerializeField] private AIState _currentState;
     private AIStateInfo _stateInfo;
     //private AgentMovement _agentMovement;
@@ -23,9 +21,5 @@ public class AIBrain : MonoBehaviour
 
     protected virtual void Update(){
         _currentState.UpdateState();
-    }
-
-    public void Move(Vector2 direction){
-        OnMovementCommand?.Invoke(direction);
     }
 }
