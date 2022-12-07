@@ -1,37 +1,7 @@
 fileFormatVersion: 2
-guid: ae828140d2c9d3744b02b9e5566a055d
+guid: d26f374e51f33df418a1e9af8867866e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -3642496121569270901
-    second: SatanNormal2_15
-  - first:
-      213: 8033609786955884589
-    second: SatanNormal2_16
-  - first:
-      213: -6936748466578278936
-    second: SatanNormal2_24
-  - first:
-      213: -3786840364558499343
-    second: SatanNormal2_26
-  - first:
-      213: -8235749333369890043
-    second: SatanNormal2_28
-  - first:
-      213: 6495882607094126960
-    second: SatanNormal2_29
-  - first:
-      213: -2381117549750740407
-    second: SatanNormal2_30
-  - first:
-      213: -3168793806681403754
-    second: SatanNormal2_34
-  - first:
-      213: 1422118257726908387
-    second: SatanNormal2_36
-  - first:
-      213: 3756310360263024238
-    second: SatanNormal2_37
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -62,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -76,7 +46,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,7 +68,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,7 +92,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -134,7 +104,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -143,53 +113,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SatanNormal2_15
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 282
-        width: 259
-        height: 125
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8320228311437dc0800000000000000
-      internalID: -3642496121569270901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SatanNormal2_16
-      rect:
-        serializedVersion: 2
-        x: 108
-        y: 122
-        width: 259
-        height: 125
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d286b9f898d1d7f60800000000000000
-      internalID: 8033609786955884589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a663fe18e03f0874ba07eaae4e9f0891
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
