@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boss_Head_Appear
+  m_Name: BossOnWall
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,14 +20,12 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -3642496121569270901, guid: ae828140d2c9d3744b02b9e5566a055d, type: 3}
-    - time: 0.125
-      value: {fileID: 5973443092233967560, guid: 6f977edccc19fe949a6248e71e3909a8, type: 3}
+      value: {fileID: 21300000, guid: 957980402e780429c9553adac3f6cd1c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 8
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -42,19 +40,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -3642496121569270901, guid: ae828140d2c9d3744b02b9e5566a055d, type: 3}
-    - {fileID: 5973443092233967560, guid: 6f977edccc19fe949a6248e71e3909a8, type: 3}
+    - {fileID: 21300000, guid: 957980402e780429c9553adac3f6cd1c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

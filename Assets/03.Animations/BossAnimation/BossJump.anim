@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boss_Hand_Idle
+  m_Name: BossJump
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,12 +20,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -6073475978815195806, guid: 6f977edccc19fe949a6248e71e3909a8, type: 3}
+      value: {fileID: 21300000, guid: 254f18d9bf12c461a9e02de77091fe5a, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: 71678cc005a5d47e3aa691eb1d04ed35, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 4
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -40,13 +42,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -6073475978815195806, guid: 6f977edccc19fe949a6248e71e3909a8, type: 3}
+    - {fileID: 21300000, guid: 254f18d9bf12c461a9e02de77091fe5a, type: 3}
+    - {fileID: 21300000, guid: 71678cc005a5d47e3aa691eb1d04ed35, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.16666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
