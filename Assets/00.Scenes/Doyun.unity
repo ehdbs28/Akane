@@ -469,7 +469,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - {fileID: 316051270}
-  transitions: []
+  transitions:
+  - {fileID: 1611323274}
+  - {fileID: 1450557869}
+  - {fileID: 1438014639}
+  - {fileID: 875024266}
 --- !u!114 &316051270
 MonoBehaviour:
   m_ObjectHideFlags: 0
