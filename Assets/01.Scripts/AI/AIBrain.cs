@@ -7,12 +7,17 @@ public class AIBrain : MonoBehaviour
 {
     [SerializeField] private AIState _currentState;
     private AIStateInfo _stateInfo;
+
+    public Animator Animator;
+    public Rigidbody2D Rigid;
     //private AgentMovement _agentMovement;
 
     //private Dictionary<Skill>
 
     private void Awake() {
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
+        Animator = GetComponent<Animator>();
+        Rigid = GetComponent<Rigidbody2D>();
     }
 
     public void ChangeToState(AIState nextState){

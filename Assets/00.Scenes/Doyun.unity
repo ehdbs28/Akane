@@ -288,6 +288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: {fileID: 316051269}
+  Animator: {fileID: 0}
+  Rigid: {fileID: 0}
 --- !u!50 &298913025
 Rigidbody2D:
   serializedVersion: 4
@@ -595,6 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 549337249}
   - component: {fileID: 549337250}
+  - component: {fileID: 549337251}
   m_Layer: 0
   m_Name: RollAttackState
   m_TagString: Untagged
@@ -629,8 +632,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
+  actions:
+  - {fileID: 549337251}
   transitions: []
+--- !u!114 &549337251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549337248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a58d0b57796064685e357761705e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rollingSpeed: 5
+  _whatIsWallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &568740574
 GameObject:
   m_ObjectHideFlags: 0
