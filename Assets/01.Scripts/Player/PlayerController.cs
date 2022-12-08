@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveDir = Vector2.zero;
 
+    private bool _isDying;
+    public bool IsDying
+    {
+        get => _isDying;
+        set => _isDying = value;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +44,5 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
     }
 }

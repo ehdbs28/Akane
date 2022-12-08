@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     public int followDelay;
     public Transform parent;
     public Queue<Vector3> parentPos;
-
+    private PlayerAttack _attackScript;
     private void Awake()
     {
         parentPos = new Queue<Vector3>();
