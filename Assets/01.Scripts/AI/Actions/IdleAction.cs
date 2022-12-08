@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class IdleAction : AIAction
 {
-    [System.Serializable]
-    struct MapData{
-        public float MaxPos_X;
-        public float MinPos_X;
-    }
-
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private MapData _mapData;
 
     private Rigidbody2D _rigid;
+    private SpriteRenderer _spriteRenderer;
+
     private Vector2 _moveDir;
 
     private void Start() {
-        _moveDir = Vector2.right;
         _rigid = _brain.GetComponent<Rigidbody2D>();
+        _spriteRenderer = _brain.GetComponent<SpriteRenderer>();
     }
 
     public override void TakeAction()
     {
-        _rigid.position += _moveDir * _moveSpeed * Time.deltaTime;
-        if(_rigid.position.x >= _mapData.MaxPos_X || _rigid.position.x <= _mapData.MinPos_X){
-            _moveDir *= -1f;
-        }
+        _moveDir = PlayerController.Instance.transform.position - transform.position;
+        _rigid.velocity = _moveDir.normalized * _moveSpeed;
+        _spriteRenderer.flipX = _moveDir.x < 0;
     }
 }

@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 257887225}
+  - component: {fileID: 257887226}
   m_Layer: 0
   m_Name: TransIdle
   m_TagString: Untagged
@@ -153,6 +154,21 @@ Transform:
   m_Father: {fileID: 549337249}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &257887226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257887224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
 --- !u!1 &298913020
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +181,8 @@ GameObject:
   - component: {fileID: 298913021}
   - component: {fileID: 298913023}
   - component: {fileID: 298913024}
+  - component: {fileID: 298913026}
+  - component: {fileID: 298913025}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -269,7 +287,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d3e8e4a4af23c4cbc6a2bc62f56417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentState: {fileID: 0}
+  _currentState: {fileID: 316051269}
+--- !u!50 &298913025
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298913020}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &298913026
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298913020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!1 &303376479
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310598144}
+  - component: {fileID: 310598145}
   m_Layer: 0
   m_Name: SectorFormAttackState
   m_TagString: Untagged
@@ -349,6 +405,20 @@ Transform:
   m_Father: {fileID: 303376480}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310598145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310598143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
 --- !u!1 &316051267
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +428,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316051268}
+  - component: {fileID: 316051269}
+  - component: {fileID: 316051270}
   m_Layer: 0
   m_Name: IdleState
   m_TagString: Untagged
@@ -375,10 +447,42 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1611323273}
+  - {fileID: 1450557868}
+  - {fileID: 1438014638}
+  - {fileID: 875024265}
   m_Father: {fileID: 303376480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &316051269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316051267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 316051270}
+  transitions: []
+--- !u!114 &316051270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316051267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b9588b19cd507428aa2502ae8bea1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 1
 --- !u!1 &483785569
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 549337249}
+  - component: {fileID: 549337250}
   m_Layer: 0
   m_Name: RollAttackState
   m_TagString: Untagged
@@ -508,6 +613,20 @@ Transform:
   m_Father: {fileID: 303376480}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549337250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549337248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
 --- !u!1 &568740574
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +726,52 @@ Transform:
   m_Father: {fileID: 568740575}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &875024264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875024265}
+  - component: {fileID: 875024266}
+  m_Layer: 0
+  m_Name: TransBigMissileAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &875024265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875024264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 316051268}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &875024266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875024264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
 --- !u!1 &1276396906
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1276396907}
+  - component: {fileID: 1276396908}
   m_Layer: 0
   m_Name: TransIdle
   m_TagString: Untagged
@@ -637,6 +803,113 @@ Transform:
   m_Father: {fileID: 310598144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276396908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276396906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
+--- !u!1 &1438014637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438014638}
+  - component: {fileID: 1438014639}
+  m_Layer: 0
+  m_Name: TransSectorFormAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1438014638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438014637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 316051268}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1438014639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438014637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
+--- !u!1 &1450557867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450557868}
+  - component: {fileID: 1450557869}
+  m_Layer: 0
+  m_Name: TransLaserAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450557868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450557867}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 316051268}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1450557869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450557867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
 --- !u!1 &1553378316
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +919,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1553378317}
+  - component: {fileID: 1553378318}
   m_Layer: 0
   m_Name: BigMissileAttackState
   m_TagString: Untagged
@@ -668,6 +942,66 @@ Transform:
   m_Father: {fileID: 303376480}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1553378318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553378316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
+--- !u!1 &1611323272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611323273}
+  - component: {fileID: 1611323274}
+  m_Layer: 0
+  m_Name: TransRollAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611323273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611323272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 316051268}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611323274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611323272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
 --- !u!1 &1688702005
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +1094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748004708}
+  - component: {fileID: 1748004709}
   m_Layer: 0
   m_Name: TransIdle
   m_TagString: Untagged
@@ -781,6 +1116,21 @@ Transform:
   m_Father: {fileID: 1553378317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1748004709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748004707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
 --- !u!1 &1756105404
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +1140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756105405}
+  - component: {fileID: 1756105406}
   m_Layer: 0
   m_Name: LaserAttackState
   m_TagString: Untagged
@@ -812,6 +1163,20 @@ Transform:
   m_Father: {fileID: 303376480}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1756105406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756105404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
 --- !u!1 &1980180565
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +1288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022606527}
+  - component: {fileID: 2022606528}
   m_Layer: 0
   m_Name: TransIdle
   m_TagString: Untagged
@@ -944,6 +1310,21 @@ Transform:
   m_Father: {fileID: 1756105405}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022606528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022606526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7e17e91f718ab4abdf71fa49cf5d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisions: []
+  positiveResult: {fileID: 0}
+  negativeResult: {fileID: 0}
 --- !u!1 &2113163115
 GameObject:
   m_ObjectHideFlags: 0
