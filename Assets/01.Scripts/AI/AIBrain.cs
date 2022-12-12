@@ -13,12 +13,15 @@ public class AIBrain : MonoBehaviour
 
     public Animator Animator;
     public Rigidbody2D Rigid;
+
+    public Transform Player;
     //private AgentMovement _agentMovement;
 
     //private Dictionary<Skill>
 
     private void Awake() {
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
+        Player = GameObject.Find("Player").transform;
         Animator = GetComponent<Animator>();
         Rigid = GetComponent<Rigidbody2D>();
     }
