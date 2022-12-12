@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class AIBrain : MonoBehaviour
 {
     [SerializeField] private AIState _currentState;
+
+    public int SkillWave = 0;
+
     private AIStateInfo _stateInfo;
 
     public Animator Animator;
