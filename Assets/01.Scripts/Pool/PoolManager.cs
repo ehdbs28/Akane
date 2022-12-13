@@ -2,21 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager
+public class PoolManager : MonoSingleton<PoolManager>
 {
-    public static PoolManager Instance = null;
-
     private Dictionary<string, Pool<Poolable>> _pools = new Dictionary<string, Pool<Poolable>>();
 
     private Transform _trmParent;
 
-    public PoolManager(Transform trmParent)
+    public void CreatePool(Poolable prefab, Transform parent, int cnt = 10)
     {
-        _trmParent = trmParent;
-    }
-
-    public void CreatePool(Poolable prefab, int cnt = 10)
-    {
+        _trmParent = parent;
         Pool<Poolable> pool = new Pool<Poolable>(prefab, _trmParent, cnt);
         _pools.Add(prefab.gameObject.name, pool);
     }
