@@ -16,6 +16,7 @@ public class IdleAction : AIAction
 
     public override void TakeAction()
     {
+        _brain.Animator.SetBool("IsSkill", false);
         _moveDir = PlayerController.Instance.transform.position - transform.position;
         _brain.Rigid.velocity = _moveDir.normalized * _moveSpeed;
         _spriteRenderer.flipX = _moveDir.x < 0;
