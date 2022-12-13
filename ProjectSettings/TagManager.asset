@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Playerable
     uniqueID: 3302979375
+    locked: 0
+  - name: Effect
+    uniqueID: 4140985189
     locked: 0
