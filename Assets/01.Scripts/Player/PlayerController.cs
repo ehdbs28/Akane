@@ -29,6 +29,17 @@ public class PlayerController : MonoSingleton<PlayerController>
     private void Update()
     {
         Movement();
+
+        //test
+        if(Input.GetKeyDown(KeyCode.L)){
+            Effect effect = PoolManager.Instance.Pop("AttackParticle") as Effect;
+            effect.SetPosition(transform.position);
+            effect.Play();
+
+            Effect effect2 = PoolManager.Instance.Pop("BossBrokenEffect") as Effect;
+            effect2.SetPosition(transform.position);
+            effect2.Play();
+        }
     }
 
     private void Movement()
