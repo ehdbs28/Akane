@@ -5,7 +5,6 @@ using UnityEngine;
 public class RollAttackAction : AIAction
 {
     [SerializeField] private float _rollingSpeed = 5f;
-    [SerializeField] private float _rollingTime = 10f;
     [SerializeField] private LayerMask _whatIsWallLayer;
 
     private CircleCollider2D _circleCollider;
