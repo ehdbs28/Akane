@@ -26,8 +26,18 @@ public class AIBrain : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
     }
 
+    private void Start() {
+        ChangeToState(_currentState);
+    }
+
     public void ChangeToState(AIState nextState){
         _currentState = nextState;
+        ActionReset();
+    }
+
+    private void ActionReset(){
+        AIAction currentAction = _currentState.GetComponent<AIAction>();
+        currentAction?.Reset();
     }
 
     protected virtual void Update(){
