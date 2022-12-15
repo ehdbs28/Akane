@@ -503,7 +503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPlayAction: 0
-  _angle: 20
 --- !u!1 &316051267
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionTime: 2
+  _actionTime: 1
   _thisAction: {fileID: 316051270}
   _isItSkill: 0
 --- !u!1 &971006944
@@ -1178,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionTime: 3
+  _actionTime: 2
   _thisAction: {fileID: 310598146}
   _isItSkill: 1
 --- !u!1 &1315539927
@@ -1408,7 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionTime: 2
+  _actionTime: 1
   _thisAction: {fileID: 316051270}
   _isItSkill: 0
 --- !u!1 &1450557867
@@ -1486,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionTime: 2
+  _actionTime: 1
   _thisAction: {fileID: 316051270}
   _isItSkill: 0
 --- !u!1 &1553378316
@@ -1610,7 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionTime: 2
+  _actionTime: 1
   _thisAction: {fileID: 316051270}
   _isItSkill: 0
 --- !u!1 &1688702005

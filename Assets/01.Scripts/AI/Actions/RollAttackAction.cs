@@ -22,7 +22,7 @@ public class RollAttackAction : AIAction
         RaycastHit2D hit = Physics2D.CircleCast(_brain.transform.position + (Vector3)_circleCollider.offset, _circleCollider.bounds.extents.x, _lastVelocity.normalized, 0.1f, _whatIsWallLayer);
         if(hit.collider){
             Vector3 replectVec = Vector3.Reflect(_lastVelocity, hit.normal);
-            Debug.Log(replectVec.normalized);
+            BulletCreatePattern();
             _brain.Rigid.velocity = replectVec.normalized * _rollingSpeed;
         }
     }
@@ -34,5 +34,21 @@ public class RollAttackAction : AIAction
 
         _brain.Animator.SetBool("IsSkill", true);
         _brain.Animator.SetInteger("Pattern", 2);
+    }
+
+    private void BulletCreatePattern(){
+        int startAngle = 0;
+        int endAngle = 360;
+        int angleInterval = 30;
+
+        Vector3 originPos = _brain.transform.position;
+
+        for(int angle = startAngle; angle < endAngle; angle += angleInterval){
+            Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Rad2Deg));
+
+            BossBullet bullet = PoolManager.Instance.Pop("BossBullet") as BossBullet;
+            bullet.transform.position = originPos;
+            bullet.SetVelocity(dir);
+        }
     }
 }
