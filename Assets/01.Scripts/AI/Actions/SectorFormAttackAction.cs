@@ -6,7 +6,6 @@ public class SectorFormAttackAction : AIAction
 {
     [SerializeField] private float _angle;
 
-    private float _attackDistance = 1f;
     private Vector3 _origin;
 
     public override void TakeAction()

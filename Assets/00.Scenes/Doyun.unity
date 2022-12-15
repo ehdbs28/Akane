@@ -232,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionTime: 3
   _thisAction: {fileID: 549337251}
+  _isItSkill: 1
 --- !u!1 &298913020
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +801,7 @@ GameObject:
   - component: {fileID: 875024265}
   - component: {fileID: 875024266}
   - component: {fileID: 875024267}
+  - component: {fileID: 875024268}
   m_Layer: 0
   m_Name: TransBigMissileAttack
   m_TagString: Untagged
@@ -835,6 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - {fileID: 875024267}
+  - {fileID: 875024268}
   positiveResult: {fileID: 1553378318}
   negativeResult: {fileID: 0}
 --- !u!114 &875024267
@@ -850,6 +853,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisSkillCount: 3
+--- !u!114 &875024268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875024264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionTime: 2
+  _thisAction: {fileID: 316051270}
+  _isItSkill: 0
 --- !u!1 &971006944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,6 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionTime: 3
   _thisAction: {fileID: 310598146}
+  _isItSkill: 1
 --- !u!1 &1315539927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,6 +1344,7 @@ GameObject:
   - component: {fileID: 1438014638}
   - component: {fileID: 1438014639}
   - component: {fileID: 1438014640}
+  - component: {fileID: 1438014641}
   m_Layer: 0
   m_Name: TransSectorFormAttack
   m_TagString: Untagged
@@ -1360,6 +1380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - {fileID: 1438014640}
+  - {fileID: 1438014641}
   positiveResult: {fileID: 310598145}
   negativeResult: {fileID: 0}
 --- !u!114 &1438014640
@@ -1375,6 +1396,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisSkillCount: 1
+--- !u!114 &1438014641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438014637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionTime: 2
+  _thisAction: {fileID: 316051270}
+  _isItSkill: 0
 --- !u!1 &1450557867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1422,7 @@ GameObject:
   - component: {fileID: 1450557868}
   - component: {fileID: 1450557869}
   - component: {fileID: 1450557870}
+  - component: {fileID: 1450557871}
   m_Layer: 0
   m_Name: TransLaserAttack
   m_TagString: Untagged
@@ -1421,6 +1458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - {fileID: 1450557870}
+  - {fileID: 1450557871}
   positiveResult: {fileID: 1756105406}
   negativeResult: {fileID: 0}
 --- !u!114 &1450557870
@@ -1436,6 +1474,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisSkillCount: 2
+--- !u!114 &1450557871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450557867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionTime: 2
+  _thisAction: {fileID: 316051270}
+  _isItSkill: 0
 --- !u!1 &1553378316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1546,7 @@ GameObject:
   - component: {fileID: 1611323273}
   - component: {fileID: 1611323274}
   - component: {fileID: 1611323275}
+  - component: {fileID: 1611323276}
   m_Layer: 0
   m_Name: TransRollAttack
   m_TagString: Untagged
@@ -1528,6 +1582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - {fileID: 1611323275}
+  - {fileID: 1611323276}
   positiveResult: {fileID: 549337250}
   negativeResult: {fileID: 0}
 --- !u!114 &1611323275
@@ -1543,6 +1598,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisSkillCount: 0
+--- !u!114 &1611323276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611323272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionTime: 2
+  _thisAction: {fileID: 316051270}
+  _isItSkill: 0
 --- !u!1 &1688702005
 GameObject:
   m_ObjectHideFlags: 0
