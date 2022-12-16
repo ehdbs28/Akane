@@ -23,7 +23,7 @@ public class SectorFormAttackAction : AIAction
         _brain.Rigid.velocity = Vector2.zero;
         _origin = _brain.transform.position;
 
-        Vector3 _targetPos = _brain.Player.position - _brain.transform.position;
+        Vector3 _targetPos = _brain.Player.position - _origin;
         _startAngle = Mathf.Atan2(_targetPos.y, _targetPos.x) * Mathf.Rad2Deg - _angleInterval;
         _endAngle = Mathf.Atan2(_targetPos.y, _targetPos.x) * Mathf.Rad2Deg + _angleInterval;
 
