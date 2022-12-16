@@ -10,5 +10,7 @@ public class GameManager : MonoSingleton<GameManager>
         foreach(Poolable poolable in _poolList){
             PoolManager.Instance.CreatePool(poolable, transform);
         }
+
+        MaterialManager.Instance = gameObject.AddComponent<MaterialManager>();
     }
 }

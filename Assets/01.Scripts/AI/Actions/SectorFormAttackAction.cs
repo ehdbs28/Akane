@@ -18,7 +18,7 @@ public class SectorFormAttackAction : AIAction
 
     public override void TakeAction()
     {
-        if(IsPlayAction is true) return;
+        if(IsPlayAction) return;
 
         _brain.Rigid.velocity = Vector2.zero;
         _origin = _brain.transform.position;
@@ -33,6 +33,7 @@ public class SectorFormAttackAction : AIAction
             BossBullet bullet = PoolManager.Instance.Pop("BossBullet") as BossBullet;
             bullet.transform.position = _origin;
             bullet.SetVelocity(((_origin + spawnPos) - _origin).normalized);
+            bullet.SetBulletColor(Color.blue);
         }
         IsPlayAction = true;
     }
