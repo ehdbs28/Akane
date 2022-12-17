@@ -17,18 +17,23 @@ public class BigBullet : BossBullet
     private Transform _player;
     private Transform _boss;
 
-    private void Start() {
+    protected override void Awake()
+    {
+        base.Awake();
         _player = GameObject.Find("Player").transform;
         _boss = GameObject.Find("Boss").transform;
+    }
 
+    private void OnEnable() {
         _bounceCount = Random.Range(3, 6);
-        Debug.Log(_bounceCount);
+        _turn = BounceTurn.Boss;
     }
 
     ///<summary>
     /// 현제 타겟의 방향으로 총알의 이동방향을 틀어줌
     ///</summary>
     public void Bounce(){
+        Debug.Log(_bounceCount);
         if(_bounceCount != 0){
             _bounceCount--;
             Vector3 dir = Vector3.zero;

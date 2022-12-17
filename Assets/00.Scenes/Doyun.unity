@@ -170,7 +170,7 @@ MonoBehaviour:
   - {fileID: 4665473364130148066, guid: ce76578734541ba45b09ad6174f634a7, type: 3}
   - {fileID: -7067829862711992579, guid: e1823564410945b4ab3c219f5abd9f50, type: 3}
   - {fileID: 2747109759347703658, guid: 11222b851248f2f45b8ebeacac99a10d, type: 3}
-  - {fileID: 5024289649028460638, guid: f87d0f935b77f9945b20eb7dba6d6dcd, type: 3}
+  - {fileID: -3091180551491669230, guid: f87d0f935b77f9945b20eb7dba6d6dcd, type: 3}
 --- !u!1 &257887224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,6 +1418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553378317}
   - component: {fileID: 1553378318}
+  - component: {fileID: 1553378319}
   m_Layer: 0
   m_Name: BigMissileAttackState
   m_TagString: Untagged
@@ -1452,8 +1453,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d089d20e78cb4104baa6ab8eefde52b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 1553378319}
+  transitions:
+  - {fileID: 1748004709}
+--- !u!114 &1553378319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553378316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d393482b0a8ff49986e5cba0a68256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlayAction: 0
 --- !u!1 &1611323272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1748004708}
   - component: {fileID: 1748004709}
+  - component: {fileID: 1748004710}
   m_Layer: 0
   m_Name: TransIdle
   m_TagString: Untagged
@@ -1804,6 +1821,21 @@ MonoBehaviour:
   decisions: []
   positiveResult: {fileID: 0}
   negativeResult: {fileID: 0}
+--- !u!114 &1748004710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748004707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionTime: 3
+  _thisAction: {fileID: 1553378319}
+  _isItSkill: 1
 --- !u!1001 &2040781266401386393
 PrefabInstance:
   m_ObjectHideFlags: 0

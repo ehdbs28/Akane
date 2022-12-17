@@ -8,7 +8,7 @@ public class BossBullet : Poolable
     private Rigidbody2D _rigid;
     private MeshRenderer _meshRenderer;
 
-    private void Awake() {
+    protected virtual void Awake() {
         _rigid = GetComponent<Rigidbody2D>();
         _meshRenderer = GetComponent<MeshRenderer>();
     }
