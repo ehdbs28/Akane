@@ -32,11 +32,11 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         //test
         if(Input.GetKeyDown(KeyCode.L)){
-            Effect effect = PoolManager.Instance.Pop("AttackParticle") as Effect;
+            PoolingParticle effect = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
             effect.SetPosition(transform.position);
             effect.Play();
 
-            Effect effect2 = PoolManager.Instance.Pop("BossBrokenEffect") as Effect;
+            PoolingParticle effect2 = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
             effect2.SetPosition(transform.position);
             effect2.Play();
         }

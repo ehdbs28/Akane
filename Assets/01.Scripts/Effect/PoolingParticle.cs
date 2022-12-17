@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect : Poolable
+public class PoolingParticle : Poolable
 {
     protected ParticleSystem _particleSystem;
 
@@ -26,6 +26,7 @@ public class Effect : Poolable
 
     public virtual void Play(){
         _particleSystem.Play();
+        Invoke("SetDisable", 1f);
     }
 
     ///<summary>

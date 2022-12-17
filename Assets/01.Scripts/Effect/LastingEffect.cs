@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LastingEffect : Effect
+public class LastingEffect : PoolingParticle
 {
     [SerializeField] private float _stopMoveTime = 0.25f;
 

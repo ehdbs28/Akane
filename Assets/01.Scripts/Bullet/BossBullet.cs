@@ -21,6 +21,14 @@ public class BossBullet : Poolable
         MaterialManager.Instance.InstancingShader(_meshRenderer, color);
     }
 
+    public void DestroyBullet(){
+        PoolingParticle deadParticle = PoolManager.Instance.Pop("BulletDeleteParticle") as PoolingParticle;
+        deadParticle.SetPosition(transform.position);
+        deadParticle.Play();
+
+        PoolManager.Instance.Push(this);
+    }
+
     public override void Reset()
     {
         
