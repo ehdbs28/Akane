@@ -6,18 +6,18 @@ public class MaterialManager : MonoBehaviour
 {
     public static MaterialManager Instance;
 
-    private List<Material> _materials = new List<Material>();
+    private Dictionary<Color, Material> _materials = new Dictionary<Color, Material>();
 
     public void InstancingShader(Renderer renderer, Color color){
         Material sampleMaterial = renderer.material;
         sampleMaterial.SetColor("_Color", color);
 
-        if(_materials.Contains(sampleMaterial)){
-            renderer.material = _materials[_materials.IndexOf(sampleMaterial)];
+        if(_materials.ContainsKey(color)){
+            renderer.material = _materials[color];
         }
         else{
-            Material newMaterial = Instantiate(sampleMaterial);
-            renderer.material = newMaterial;
+            renderer.material = sampleMaterial;
+            _materials.Add(color, sampleMaterial);
         }
     }
 }

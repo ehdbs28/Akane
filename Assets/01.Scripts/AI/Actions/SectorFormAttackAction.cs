@@ -33,7 +33,6 @@ public class SectorFormAttackAction : AIAction
             BossBullet bullet = PoolManager.Instance.Pop("BossBullet") as BossBullet;
             bullet.transform.position = _origin;
             bullet.SetVelocity(((_origin + spawnPos) - _origin).normalized);
-            bullet.SetBulletColor(Color.blue);
         }
         IsPlayAction = true;
     }
