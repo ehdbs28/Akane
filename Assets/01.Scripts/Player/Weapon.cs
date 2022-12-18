@@ -18,6 +18,7 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         parentPos = new Queue<Vector3>();
+        _attackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
         _anim = GetComponent<Animator>();
     }
 
@@ -52,8 +53,7 @@ public class Weapon : MonoBehaviour
         float rotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.AngleAxis(rotation - 180f, Vector3.forward);
-        transform.position = dir.normalized;
-        Debug.Log(transform.position);
+        transform.position = _attackScript.transform.position + (Vector3)dir.normalized;
         _anim.Play("WeaponSlash");
     }
 }
