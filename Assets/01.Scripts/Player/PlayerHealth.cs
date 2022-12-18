@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -23,6 +24,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private Vector2 _hpOriginPos = new Vector2(0.7f, 0.7f);
     private float _posDownValue = 0.4f;
     private GameObject _hpUI;
+
+    private Stack<Image> _hps = new Stack<Image>();
     #endregion
 
     private void Awake() {
@@ -37,11 +40,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             GameObject uiObj = GameObject.Instantiate(_hpUI);
             uiObj.GetComponent<RectTransform>().anchoredPosition = new Vector2(_hpOriginPos.x, _hpOriginPos.y - (i * _posDownValue));
             uiObj.transform.SetParent(_playerCanvas);
+
+            Image image = uiObj.GetComponent<Image>();
+            _hps.Push(image);
+            image.DOFade(0, 0.3f);
         }
     }
 
     public void OnDamage(float damage)
     {
+        StartCoroutine(DestoryHP());
+
         StartCoroutine(DamageCoroutine());
 
         PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
@@ -51,6 +60,23 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _currentHP -= damage;
         if(_currentHP <= 0){
             OnDie();
+        }
+    }
+
+    private IEnumerator DestoryHP(){
+        foreach(Image img in _hps){
+            img.DOFade(1f, 0.3f);
+        }
+
+        Image image = _hps.Pop();
+        image.GetComponent<Animator>()?.Play("DestroyHP");
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(image.gameObject);
+
+        foreach(Image img in _hps){
+            img.DOFade(0f, 0.3f);
         }
     }
 
