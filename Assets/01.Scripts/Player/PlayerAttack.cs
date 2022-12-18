@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        while (true)
+        while (_controller.enabled == true)
         {
             yield return new WaitUntil(() => Input.GetMouseButton(0));
             slash.Play();
@@ -91,7 +91,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private IEnumerator Dodge(){
-        while(true){
+        while(_controller.enabled == true){
             yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
 
             slash.Play();

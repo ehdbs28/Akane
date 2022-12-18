@@ -5936,7 +5936,7 @@ MonoBehaviour:
   slash: {fileID: 583978499}
   weaponPos: {fileID: 7853539000566870418}
   attackPos: {fileID: 788232890}
-  _playerDamage: 50
+  _playerDamage: 1
   angle: 0
   speed: 2
 --- !u!70 &898368947

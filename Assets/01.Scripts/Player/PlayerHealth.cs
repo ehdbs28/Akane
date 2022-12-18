@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private SpriteRenderer _spriteRenderer;
     private WaitForSeconds _damageDelayTime;
 
+    private PlayerController _plaeyerController;
+
     public bool IsDie {get; set;}
 
     #region UI
@@ -33,6 +35,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _currentHP = _maxHP;
         _damageDelayTime = new WaitForSeconds(_damageDelay);
         _hpUI = Resources.Load<GameObject>("Prefabs/UI/PlayerHPUI");
+        _plaeyerController = GetComponent<PlayerController>();
     }
 
     private void Start() {
@@ -48,7 +51,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public void OnDamage(float damage)
-    {
+    {   
+        if(IsDie) return;
+        
         StartCoroutine(DestoryHP());
 
         StartCoroutine(DamageCoroutine());
@@ -89,6 +94,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void OnDie()
     {
         IsDie = true;
-        Debug.Log("죽음");
+
+        _plaeyerController.Animator.SetBool("IsDie", true);
+        Invoke("CallBack", 0.1f);
+    }
+
+    private void CallBack(){
+        _plaeyerController.Animator.SetBool("IsDie", false);
+
+        _plaeyerController.enabled = false;
     }
 }

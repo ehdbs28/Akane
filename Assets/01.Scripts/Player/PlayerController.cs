@@ -14,11 +14,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     private PlayerHealth _playerHealth;
 
     private bool _isDying;
-    public bool IsDying
-    {
-        get => _isDying;
-        set => _isDying = value;
-    }
+    
+    public Animator Animator => animator;
 
     private void Awake()
     {
