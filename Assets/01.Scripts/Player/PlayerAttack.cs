@@ -83,12 +83,19 @@ public class PlayerAttack : MonoBehaviour
             _weaponController.IsWeaponSlash = false;
 
             Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
-            float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg - 90f;
-            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(1.5f, 1.5f), rotation, _targetLayer);
+            float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
+            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
             if(hits.Length > 0){
                 foreach(Collider2D hit in hits){
                     IDamageable damage = hit.GetComponent<IDamageable>();
                     damage?.OnDamage(_playerDamage);
+                    
+                    BigBullet bigBullet = hit.GetComponent<BigBullet>();
+                    if(bigBullet != null){
+                        if(bigBullet.Turn == BounceTurn.Player){
+                            bigBullet.Bounce();
+                        }
+                    }
                 }
             }
 

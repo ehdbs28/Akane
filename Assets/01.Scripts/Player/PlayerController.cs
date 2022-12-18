@@ -11,6 +11,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     private Animator animator;
     private Rigidbody2D rb;
     private Vector2 moveDir = Vector2.zero;
+    private PlayerHealth _playerHealth;
 
     private bool _isDying;
     public bool IsDying
@@ -24,6 +25,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         animator = transform.Find("PlayerSprite").GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerAttack = GetComponent<PlayerAttack>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update()
@@ -64,14 +66,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     private void OnTriggerEnter2D(Collider2D other) {
         //공격 튕기는거 테스트 용임
         if(other.CompareTag("Bullet")){
-            BigBullet bigBullet = other.GetComponent<BigBullet>();
+            BossBullet bullet = other.GetComponent<BossBullet>();
             
-            if(bigBullet != null){
-                if(bigBullet.Turn == BounceTurn.Player){
-                    bigBullet.Bounce();
-                }
+            if(bullet != null){
+                _playerHealth.OnDamage(bullet.BulletDamage);
+                bullet.DestroyBullet(); 
             }
-            
         }
     }
 }
