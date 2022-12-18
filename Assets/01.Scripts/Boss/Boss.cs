@@ -13,7 +13,9 @@ public class Boss : MonoBehaviour, IDamageable
     [SerializeField] private Material _whiteFlashMat;
 
     private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigid;
     private WaitForSeconds _damageDelayTime;
+    private Animator _animator;
 
     public bool IsStun {get; set;}
     public bool IsDie {get; set;}
@@ -22,6 +24,8 @@ public class Boss : MonoBehaviour, IDamageable
         _currentHP = _maxHP;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _damageDelayTime = new WaitForSeconds(_damageDelay);
+        _animator = GetComponent<Animator>();
+        _rigid = GetComponent<Rigidbody2D>();
     }
 
     public void OnDamage(float damage)
@@ -44,7 +48,13 @@ public class Boss : MonoBehaviour, IDamageable
 
     public void OnDie(){
         IsDie = true;
-        Debug.Log("죽음");
+        _rigid.velocity = Vector2.zero;
+        _animator.SetBool("IsDie", true);
+        Invoke("AnimLoopLimit", 0.1f);
+    }
+
+    private void AnimLoopLimit(){
+        _animator.SetBool("IsDie", false);
     }
 
     private IEnumerator DamageCoroutine(){
