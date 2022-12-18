@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BigMissileAttack : AIAction
 {
+    [ColorUsage(true, true)][SerializeField] private Color _bulletColor;
     private float _waitTime = 0;
 
     public override void Reset()
@@ -31,6 +32,7 @@ public class BigMissileAttack : AIAction
         else{
             BigBullet bullet = PoolManager.Instance.Pop("BigBullet") as BigBullet;
             bullet.transform.position = originPos;
+            bullet.SetBulletColor(_bulletColor);
 
             bullet.Bounce();
 

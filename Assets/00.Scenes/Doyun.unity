@@ -1470,6 +1470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPlayAction: 0
+  _bulletColor: {r: 0, g: 6.576396, b: 115.21312, a: 1}
 --- !u!1 &1611323272
 GameObject:
   m_ObjectHideFlags: 0

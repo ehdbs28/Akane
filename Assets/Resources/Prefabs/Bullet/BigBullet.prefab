@@ -154,4 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 5
+  _bulletColors:
+  - {r: 0, g: 6.576396, b: 115.21312, a: 1}
+  - {r: 0, g: 119.42823, b: 19.67775, a: 1}
+  - {r: 119.42823, g: 0, b: 4.9823647, a: 1}
   _bounceCount: 0
