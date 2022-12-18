@@ -25,5 +25,6 @@ public class IdleAction : AIAction
     {
         _brain.Animator.SetBool("IsSkill", false);
         _brain.Boss.IsStun = false;
+        _brain.Collider.isTrigger = false;
     }
 }

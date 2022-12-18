@@ -14,6 +14,7 @@ public class SectorFormAttackAction : AIAction
     {
         _brain.Animator.SetBool("IsSkill", true);
         _brain.Animator.SetInteger("Pattern", 3);
+        IsPlayAction = false;
     }
 
     public override void TakeAction()

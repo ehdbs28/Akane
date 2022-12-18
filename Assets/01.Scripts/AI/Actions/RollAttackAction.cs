@@ -18,6 +18,7 @@ public class RollAttackAction : AIAction
     public override void TakeAction()
     {
         _lastVelocity = _brain.Rigid.velocity;
+        _brain.Collider.isTrigger = true;
 
         RaycastHit2D hit = Physics2D.CircleCast(_brain.transform.position + (Vector3)_circleCollider.offset, _circleCollider.bounds.extents.x, _lastVelocity.normalized, 0.1f, _whatIsWallLayer);
         if(hit.collider){

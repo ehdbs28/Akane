@@ -9,6 +9,7 @@ public class BigMissileAttack : AIAction
 
     public override void Reset()
     {
+        IsPlayAction = false;
         _brain.Rigid.velocity = Vector2.zero;
         _waitTime = 1f;
 
