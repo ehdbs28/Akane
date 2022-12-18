@@ -470,6 +470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182add18f755968448f7c80b92878d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHP: 100
+  _damageDelay: 0.1
+  _originMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  _whiteFlashMat: {fileID: 2100000, guid: 9d35288b723480244b32333e52999533, type: 2}
 --- !u!1 &303376479
 GameObject:
   m_ObjectHideFlags: 0

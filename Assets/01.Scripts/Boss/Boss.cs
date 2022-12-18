@@ -7,15 +7,35 @@ public class Boss : MonoBehaviour, IDamageable
     [SerializeField] private float _maxHP;
     private float _currentHP;
 
+    [SerializeField] private float _damageDelay;
+
+    [SerializeField] private Material _originMat;
+    [SerializeField] private Material _whiteFlashMat;
+
+    private SpriteRenderer _spriteRenderer;
+    private WaitForSeconds _damageDelayTime;
+
     public bool IsStun {get; set;}
     public bool IsDie {get; set;}
 
     private void Awake() {
         _currentHP = _maxHP;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _damageDelayTime = new WaitForSeconds(_damageDelay);
     }
 
     public void OnDamage(float damage)
     {
+        StartCoroutine(DamageCoroutine());
+
+        PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
+        PoolingParticle bossBrokenParticle = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
+
+        attackParticle.SetPosition(transform.position);
+        bossBrokenParticle.SetPosition(transform.position);
+
+        attackParticle.Play(); bossBrokenParticle.Play();
+        
         _currentHP -= damage;
         if(_currentHP <= 0){
             OnDie();
@@ -25,6 +45,12 @@ public class Boss : MonoBehaviour, IDamageable
     public void OnDie(){
         IsDie = true;
         Debug.Log("죽음");
+    }
+
+    private IEnumerator DamageCoroutine(){
+        _spriteRenderer.material = _whiteFlashMat;
+        yield return _damageDelayTime;
+        _spriteRenderer.material = _originMat;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

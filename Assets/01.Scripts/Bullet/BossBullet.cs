@@ -5,8 +5,11 @@ using UnityEngine;
 public class BossBullet : Poolable
 {
     [SerializeField] private float _bulletSpeed;
+    [SerializeField] private float _bulletDamage;
     private Rigidbody2D _rigid;
     private MeshRenderer _meshRenderer;
+
+    public float BulletDamage => _bulletDamage;
 
     protected virtual void Awake() {
         _rigid = GetComponent<Rigidbody2D>();
@@ -28,9 +31,7 @@ public class BossBullet : Poolable
 
         float normalScale = 0.2f;
         float particleScale = deadParticle.transform.localScale.x;
-
         float targetScale = transform.localScale.x; 
-
         float scale = particleScale * targetScale / normalScale;
 
         deadParticle.transform.localScale = Vector3.one * scale;

@@ -29,17 +29,6 @@ public class PlayerController : MonoSingleton<PlayerController>
     private void Update()
     {
         Movement();
-
-        //test
-        if(Input.GetKeyDown(KeyCode.L)){
-            PoolingParticle effect = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
-            effect.SetPosition(transform.position);
-            effect.Play();
-
-            PoolingParticle effect2 = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
-            effect2.SetPosition(transform.position);
-            effect2.Play();
-        }
     }
 
     private void Movement()
@@ -77,6 +66,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        //공격 튕기는거 테스트 용임
         if(other.CompareTag("Bullet")){
             BigBullet bigBullet = other.GetComponent<BigBullet>();
             
