@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     private PlayerController _controller;
     private WeaponRotation _weaponController;
 
+    private LayerMask _targetLayer;
+
     private bool isAttack;
     public bool IsAttack
     {
@@ -24,6 +26,8 @@ public class PlayerAttack : MonoBehaviour
     private Transform weaponPos;
     [SerializeField]
     private Transform attackPos;
+    [SerializeField] private float _playerDamage;
+
     public float angle = 0;
     public float speed = 2f;
 
@@ -41,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Awake()
     {
+        _targetLayer = LayerMask.GetMask("Enemy");
         _controller = FindObjectOfType<PlayerController>();
         _weaponController = transform.Find("AttackPos").GetComponent<WeaponRotation>();
 
@@ -77,10 +82,14 @@ public class PlayerAttack : MonoBehaviour
             isAttack = false;
             _weaponController.IsWeaponSlash = false;
 
-            RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(3, 5), attackPos.GetComponent<WeaponRotation>().angle,transform.forward,LayerMask.GetMask("Enemy"));
-            if(hit)
-            {
-                Debug.Log("hit");
+            Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
+            float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg - 90f;
+            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(1.5f, 1.5f), rotation, _targetLayer);
+            if(hits.Length > 0){
+                foreach(Collider2D hit in hits){
+                    IDamageable damage = hit.GetComponent<IDamageable>();
+                    damage?.OnDamage(_playerDamage);
+                }
             }
 
             yield return new WaitForSeconds(attackDelay);

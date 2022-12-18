@@ -49,10 +49,10 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Attack(Vector2 dir){
+    public void Attack(Vector3 dir){
         float rotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.AngleAxis(rotation - 180f, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(rotation, Vector3.forward);
         transform.position = _attackScript.transform.position + (Vector3)dir.normalized;
         _anim.Play("WeaponSlash");
     }

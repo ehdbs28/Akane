@@ -10,6 +10,8 @@ public class WeaponRotation : MonoBehaviour
     PlayerAttack _playerAttack;
     private Weapon _playerWeapon;
 
+    public Vector2 MouseInput;
+
     public bool IsWeaponSlash {
         get {return _playerWeapon.IsAttack;}
         set {_playerWeapon.IsAttack = value;}
@@ -24,15 +26,15 @@ public class WeaponRotation : MonoBehaviour
 
     private void Update()
     {
+        MouseInput = _mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         if (_playerAttack.IsRotate)
         {
-            Vector2 inputVec = _mainCam.ScreenToWorldPoint(Input.mousePosition);
-            angle = Mathf.Atan2(inputVec.y - transform.position.y, inputVec.x - transform.position.x) * Mathf.Rad2Deg - 90;
-            transform.eulerAngles = new Vector3(0f, 0f, angle);
+            angle = Mathf.Atan2(MouseInput.y, MouseInput.x) * Mathf.Rad2Deg - 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
     public void WeaponAttack(){
-        _playerWeapon.Attack(_mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        _playerWeapon.Attack((Vector3)MouseInput - transform.position);
     }
 }
