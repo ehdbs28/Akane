@@ -44,25 +44,25 @@ public class PlayerController : MonoSingleton<PlayerController>
         animator.SetFloat("Y_Input", moveDir.y);
 
         rb.velocity = moveDir.normalized * _speed;
-        // if (!playerAttack.IsAttack)
-        // {
-        //     if (h < 0)
-        //     {
-        //         _weaponTrm.position = new Vector3(transform.position.x + 0.7f, transform.position.y + 0.5f, 0);
-        //     }
-        //     else if (h > 0)
-        //     {
-        //         _weaponTrm.position = new Vector3(transform.position.x - 0.7f, transform.position.y + 0.5f, 0);
-        //     }
-        //     else
-        //     {
-        //         return;
-        //     }
-        // }
-        // else
-        // {
-        //     return;
-        // }
+        if (!playerAttack.IsAttack)
+        {
+            if (h < 0)
+            {
+                _weaponTrm.position = new Vector3(transform.position.x + 0.7f, transform.position.y + 0.5f, 0);
+            }
+            else if (h > 0)
+            {
+                _weaponTrm.position = new Vector3(transform.position.x - 0.7f, transform.position.y + 0.5f, 0);
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            return;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
