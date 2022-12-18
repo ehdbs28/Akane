@@ -50,21 +50,7 @@ public class PlayerAttack : MonoBehaviour
         _weaponController = transform.Find("AttackPos").GetComponent<WeaponRotation>();
 
         StartCoroutine(Attack());
-    }
-
-    private void Update()
-    {
-        //if (isAttack)
-        //{
-            // lerpTime += Time.deltaTime * speed;
-            // weaponPos.rotation = CalculateMovementOfPendulum();
-
-            // weaponPos.position = Vector3.LerpUnclamped(weaponPos.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), 1);
-        //}
-        // else
-        // {
-        //     weaponPos.rotation = Quaternion.Lerp(Quaternion.Euler(0, 0, transform.rotation.z), Quaternion.Euler(0, 0, 135), 0.1f);
-        // }
+        StartCoroutine(Dodge());
     }
 
     IEnumerator Attack()
@@ -96,6 +82,35 @@ public class PlayerAttack : MonoBehaviour
                             bigBullet.Bounce();
                         }
                     }
+                }
+            }
+
+            yield return new WaitForSeconds(attackDelay);
+            IsRotate = true;
+        }
+    }
+
+    private IEnumerator Dodge(){
+        while(true){
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
+
+            slash.Play();
+            _weaponController.WeaponAttack();
+            _weaponController.IsWeaponSlash = true;
+
+            IsRotate = false;
+
+            yield return new WaitForSeconds(0.1f);
+
+            _weaponController.IsWeaponSlash = false;
+
+            Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
+            float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
+            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
+            if(hits.Length > 0){
+                foreach(Collider2D hit in hits){
+                    BossBullet bullet = hit.GetComponent<BossBullet>();
+                    bullet?.DestroyBullet();
                 }
             }
 
