@@ -45,6 +45,8 @@ public class AIBrain : MonoBehaviour
     }
 
     protected virtual void Update(){
+        if(Boss.IsDie) return;
+        
         _currentState.UpdateState();
     }
 }

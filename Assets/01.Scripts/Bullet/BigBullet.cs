@@ -55,10 +55,7 @@ public class BigBullet : BossBullet
         }
         else{
             IsBulletDisable = true;
-            if(_turn == BounceTurn.Player){ //hit Player
-
-            }
-            else{ //hit Boss
+            if(_turn == BounceTurn.Boss){ //Only hit Boss
                 Boss boss = _boss.GetComponent<Boss>();
                 boss.IsStun = true;
             }
