@@ -13,8 +13,10 @@ public class AIBrain : MonoBehaviour
 
     public Animator Animator;
     public Rigidbody2D Rigid;
+    public Collider2D Collider;
 
     public Transform Player;
+    public Boss Boss;
     //private AgentMovement _agentMovement;
 
     //private Dictionary<Skill>
@@ -24,6 +26,8 @@ public class AIBrain : MonoBehaviour
         Player = GameObject.Find("Player").transform;
         Animator = GetComponent<Animator>();
         Rigid = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
+        Boss = GetComponent<Boss>();
     }
 
     private void Start() {

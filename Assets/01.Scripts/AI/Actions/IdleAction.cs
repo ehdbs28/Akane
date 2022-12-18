@@ -24,5 +24,6 @@ public class IdleAction : AIAction
     public override void Reset()
     {
         _brain.Animator.SetBool("IsSkill", false);
+        _brain.Boss.IsStun = false;
     }
 }

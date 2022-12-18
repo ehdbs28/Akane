@@ -24,7 +24,16 @@ public class BossBullet : Poolable
     public void DestroyBullet(){
         PoolingParticle deadParticle = PoolManager.Instance.Pop("BulletDeleteParticle") as PoolingParticle;
         deadParticle.SetPosition(transform.position);
-        deadParticle.Play();
+        deadParticle.Play(1f);
+
+        float normalScale = 0.2f;
+        float particleScale = deadParticle.transform.localScale.x;
+
+        float targetScale = transform.localScale.x; 
+
+        float scale = particleScale * targetScale / normalScale;
+
+        deadParticle.transform.localScale = Vector3.one * scale;
 
         PoolManager.Instance.Push(this);
     }

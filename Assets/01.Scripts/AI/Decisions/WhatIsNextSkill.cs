@@ -8,6 +8,6 @@ public class WhatIsNextSkill : AIDecision
     
     public override bool MakeADecision()
     {
-        return _thisSkillCount == _brain.SkillWave % 4;
+        return _thisSkillCount == _brain.SkillWave % 3;
     }
 }

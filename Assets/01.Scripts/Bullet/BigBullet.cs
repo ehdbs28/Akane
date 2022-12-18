@@ -17,6 +17,8 @@ public class BigBullet : BossBullet
     private Transform _player;
     private Transform _boss;
 
+    private int[] _bounceCnt = {4, 6, 8};
+
     protected override void Awake()
     {
         base.Awake();
@@ -25,7 +27,7 @@ public class BigBullet : BossBullet
     }
 
     private void OnEnable() {
-        _bounceCount = Random.Range(3, 6);
+        _bounceCount = _bounceCnt[Random.Range(0, _bounceCnt.Length)];
         _turn = BounceTurn.Boss;
     }
 
@@ -33,7 +35,6 @@ public class BigBullet : BossBullet
     /// 현제 타겟의 방향으로 총알의 이동방향을 틀어줌
     ///</summary>
     public void Bounce(){
-        Debug.Log(_bounceCount);
         if(_bounceCount != 0){
             _bounceCount--;
             Vector3 dir = Vector3.zero;
@@ -49,13 +50,19 @@ public class BigBullet : BossBullet
             TurnChange();
         }
         else{
-            //보스 스턴 추가 해야댐
+            if(_turn == BounceTurn.Player){ //hit Player
+
+            }
+            else{ //hit Boss
+                Boss boss = _boss.GetComponent<Boss>();
+                boss.IsStun = true;
+            }
             DestroyBullet();
         }
     }
 
     private void TurnChange(){
-        transform.localScale = transform.localScale - Vector3.zero * 0.3f;
+        transform.localScale = transform.localScale - Vector3.one * 0.03f;
 
         if(_turn == BounceTurn.Player){
             _turn = BounceTurn.Boss;

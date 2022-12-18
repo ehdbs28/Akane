@@ -26,7 +26,6 @@ public class BigMissileAttack : AIAction
 
         if(_waitTime >= 0){
             _waitTime -= Time.deltaTime;
-            Debug.Log(_waitTime);
             _brain.Animator.SetFloat("WaitTime", _waitTime);
         }
         else{

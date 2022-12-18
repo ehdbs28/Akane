@@ -35,6 +35,10 @@ public class PlayerController : MonoSingleton<PlayerController>
             PoolingParticle effect = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
             effect.SetPosition(transform.position);
             effect.Play();
+
+            PoolingParticle effect2 = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
+            effect2.SetPosition(transform.position);
+            effect2.Play();
         }
     }
 
@@ -70,5 +74,18 @@ public class PlayerController : MonoSingleton<PlayerController>
         // {
         //     return;
         // }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Bullet")){
+            BigBullet bigBullet = other.GetComponent<BigBullet>();
+            
+            if(bigBullet != null){
+                if(bigBullet.Turn == BounceTurn.Player){
+                    bigBullet.Bounce();
+                }
+            }
+            
+        }
     }
 }

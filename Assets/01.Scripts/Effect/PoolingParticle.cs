@@ -26,7 +26,11 @@ public class PoolingParticle : Poolable
 
     public virtual void Play(){
         _particleSystem.Play();
-        Invoke("SetDisable", 1f);
+    }
+
+    public virtual void Play(float waitTime){
+        _particleSystem.Play();
+        Invoke("SetDisable", waitTime);
     }
 
     ///<summary>

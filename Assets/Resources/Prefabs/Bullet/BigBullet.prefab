@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6590275686055978120}
   m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 1, z: 0.4}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -154,8 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 5
-  _bulletColors:
-  - {r: 0, g: 6.576396, b: 115.21312, a: 1}
-  - {r: 0, g: 119.42823, b: 19.67775, a: 1}
-  - {r: 119.42823, g: 0, b: 4.9823647, a: 1}
   _bounceCount: 0
