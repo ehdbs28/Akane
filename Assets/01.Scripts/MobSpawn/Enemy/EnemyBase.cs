@@ -11,8 +11,7 @@ public class EnemyBase : Poolable
         Debug.Log($"{this.name} : excute method Reset");
     }
 
-
     private void Shoot(){
-        transform.position += transform.up * _speed;
+        //transform.position += transform.up * _speed;
     }
 }

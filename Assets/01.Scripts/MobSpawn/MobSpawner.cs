@@ -5,9 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class MobSpawner : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _spawnPos = new List<Transform>();
     [SerializeField] private GameObject Enemy;
-    [SerializeField] private Tilemap tiles;
+    [SerializeField] private List<WavePoint> point = new List<WavePoint>();
 
 
     private float nextStageTime = 5f;
@@ -16,15 +15,15 @@ public class MobSpawner : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    [ContextMenu("맵 셋")]
-    private void MapSet(){
-        for(int i = 0; i < tiles.)
+    [ContextMenu("셋")]
+    private void Set(){
+        EnemySet(0,3);
     }
 
-    [ContextMenu("적 셋")]
-    private void EnemySet(){
-        for(int i = 0; i < 5; i++){
+    private void EnemySet(int waveIndex,int index){
+        for(int i = 0; i < index; i++){
             EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
+            enemy.transform.position = point[waveIndex].wavePosition[i];
         }
     }
 
