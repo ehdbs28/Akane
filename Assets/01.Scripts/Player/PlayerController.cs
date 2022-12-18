@@ -48,20 +48,16 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             if (h < 0)
             {
-                _weaponTrm.position = new Vector3(transform.position.x + 0.7f, transform.position.y + 0.5f, 0);
+                _weaponTrm.position = new Vector3(transform.position.x + 1f, transform.position.y + 0.9f, 0);
             }
             else if (h > 0)
             {
-                _weaponTrm.position = new Vector3(transform.position.x - 0.7f, transform.position.y + 0.5f, 0);
+                _weaponTrm.position = new Vector3(transform.position.x - 1f, transform.position.y + 0.9f, 0);
             }
             else
             {
                 return;
             }
-        }
-        else
-        {
-            return;
         }
     }
 
