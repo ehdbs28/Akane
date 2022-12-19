@@ -6,4 +6,6 @@ using UnityEngine;
 public class WavePoint : ScriptableObject
 {
     public Vector3[] wavePosition;
+
+    public int enemyCount;
 }

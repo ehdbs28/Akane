@@ -19,6 +19,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Animator Animator => animator;
     public Rigidbody2D Rigid => rb;
 
+    public float hp = 100f;
+
     private void Awake()
     {
         animator = transform.Find("PlayerSprite").GetComponent<Animator>();
@@ -72,5 +74,15 @@ public class PlayerController : MonoSingleton<PlayerController>
                 bullet.DestroyBullet(); 
             }
         }
+    }
+
+    public void Slow(){
+        StartCoroutine(Slowly());
+    }
+
+    IEnumerator Slowly(){
+        _speed = 3;
+        yield return new WaitForSeconds(1f);
+        _speed = 5;
     }
 }
