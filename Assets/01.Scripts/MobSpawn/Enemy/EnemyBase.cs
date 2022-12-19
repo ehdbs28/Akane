@@ -32,7 +32,7 @@ public class EnemyBase : Poolable
 
     IEnumerator DissolveOn(){
         while(!IsDie){
-            _fade += Time.deltaTime;
+            _fade += 0.05f;
             if(_fade >= 1){
                 _fade = 1;
                 StopCoroutine(DissolveOn());
@@ -43,9 +43,9 @@ public class EnemyBase : Poolable
     }
     IEnumerator DissolveOff(){
         while(IsDie){
-            _fade -= Time.deltaTime;
-            if(_fade <= 0){
-                _fade = 0;
+            _fade -= 0.05f;
+            if(_fade <= -1){
+                _fade = -1;
                 StopCoroutine(DissolveOff());
                 PoolManager.Instance.Push(this);
             }
@@ -115,13 +115,19 @@ public class EnemyBase : Poolable
             if (enemy.isFar)
             {
                 float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg + -90;
-                print(angle);
                 GameObject bullet = Instantiate(bulletPrefabs, transform.position, Quaternion.Euler(0, 0, angle));
             }
             else
             {
-                Collider2D hit = Physics2D.OverlapCircle(transform.position, 2, layer);
-                hit.transform.GetComponent<PlayerController>().hp -= enemy.damage;
+                return;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(!enemy.isFar){
+            if(other.CompareTag("Player")){
+                other.GetComponent<PlayerHealth>().OnDamage(.5f);
             }
         }
     }
