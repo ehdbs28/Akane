@@ -31,6 +31,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private void Update()
     {
+        if(_playerHealth.IsDie) return;
         Movement();
     }
 
