@@ -26,7 +26,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _currentHP = _maxHP;
         _damageDelayTime = new WaitForSeconds(_damageDelay);
         _playerController = GetComponent<PlayerController>();
+    }
 
+    private void Start() {
         UIManager.Instance.SetPlayerHP(_currentHP);
     }
 

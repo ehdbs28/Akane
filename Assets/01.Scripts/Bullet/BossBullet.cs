@@ -43,4 +43,10 @@ public class BossBullet : Poolable
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.layer == 6){
+            DestroyBullet();
+        }
+    }
 }

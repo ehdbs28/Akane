@@ -70,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
 
             Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
             float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
-            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
+            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(5.5f, 2f), rotation, _targetLayer);
             if(hits.Length > 0){
                 foreach(Collider2D hit in hits){
                     IDamageable damage = hit.GetComponent<IDamageable>();
@@ -112,7 +112,7 @@ public class PlayerAttack : MonoBehaviour
 
                 Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
                 float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
-                Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
+                Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(5.5f, 2f), rotation, _targetLayer);
                 if(hits.Length > 0){
                     foreach(Collider2D hit in hits){
                         BossBullet bullet = hit.GetComponent<BossBullet>();
