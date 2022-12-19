@@ -6958,6 +6958,7 @@ GameObject:
   - component: {fileID: 1748004708}
   - component: {fileID: 1748004709}
   - component: {fileID: 1748004710}
+  - component: {fileID: 1748004711}
   m_Layer: 0
   m_Name: TransIdle
   m_TagString: Untagged
@@ -6992,7 +6993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decisions:
-  - {fileID: 1748004710}
+  - {fileID: 1748004711}
   positiveResult: {fileID: 316051269}
   negativeResult: {fileID: 0}
 --- !u!114 &1748004710
@@ -7007,6 +7008,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e191f8b58b2482f4cbcdba69472cbd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _brain: {fileID: 0}
+  _state: {fileID: 0}
+  _bullet: {fileID: 0}
+--- !u!114 &1748004711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748004707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f52fd20ca37cab49a2ecf6512a141db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionTime: 7
+  _isItSkill: 1
 --- !u!1 &1889947014
 GameObject:
   m_ObjectHideFlags: 0

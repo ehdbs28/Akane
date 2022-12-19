@@ -19,8 +19,6 @@ public class BigBullet : BossBullet
 
     private int[] _bounceCnt = {4, 6, 8};
 
-    public bool IsBulletDisable {get; private set;} = false;
-
     protected override void Awake()
     {
         base.Awake();
@@ -32,7 +30,6 @@ public class BigBullet : BossBullet
         _bounceCount = _bounceCnt[Random.Range(0, _bounceCnt.Length)];
         _turn = BounceTurn.Boss;
         transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-        IsBulletDisable = false;
     }
 
     ///<summary>
@@ -54,7 +51,6 @@ public class BigBullet : BossBullet
             TurnChange();
         }
         else{
-            IsBulletDisable = true;
             if(_turn == BounceTurn.Boss){ //Only hit Boss
                 IDamageable damage = _boss.GetComponent<IDamageable>();
                 damage?.OnDamage(1f);
