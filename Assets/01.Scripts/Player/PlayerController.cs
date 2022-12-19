@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoSingleton<PlayerController>
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     private bool _isDying;
     
     public Animator Animator => animator;
+    public Rigidbody2D Rigid => rb;
 
     private void Awake()
     {

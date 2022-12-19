@@ -74,8 +74,11 @@ public class PlayerAttack : MonoBehaviour
             if(hits.Length > 0){
                 foreach(Collider2D hit in hits){
                     IDamageable damage = hit.GetComponent<IDamageable>();
-                    damage?.OnDamage(_playerDamage);
-                    
+                    if(damage != null){
+                        UIManager.Instance.DodgeSliderValueSet(UIManager.Instance.DodgeSliderValue + 0.2f);
+                        damage.OnDamage(_playerDamage);
+                    }
+
                     BigBullet bigBullet = hit.GetComponent<BigBullet>();
                     if(bigBullet != null){
                         if(bigBullet.Turn == BounceTurn.Player){
@@ -94,28 +97,32 @@ public class PlayerAttack : MonoBehaviour
         while(_controller.enabled == true){
             yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
 
-            slash.Play();
-            _weaponController.WeaponAttack();
-            _weaponController.IsWeaponSlash = true;
+            if(UIManager.Instance.DodgeSliderValue > 0){
+                UIManager.Instance.DodgeSliderValueSet(UIManager.Instance.DodgeSliderValue - 0.2f);
 
-            IsRotate = false;
+                slash.Play();
+                _weaponController.WeaponAttack();
+                _weaponController.IsWeaponSlash = true;
 
-            yield return new WaitForSeconds(0.1f);
+                IsRotate = false;
 
-            _weaponController.IsWeaponSlash = false;
+                yield return new WaitForSeconds(0.1f);
 
-            Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
-            float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
-            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
-            if(hits.Length > 0){
-                foreach(Collider2D hit in hits){
-                    BossBullet bullet = hit.GetComponent<BossBullet>();
-                    bullet?.DestroyBullet();
+                _weaponController.IsWeaponSlash = false;
+
+                Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
+                float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
+                Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
+                if(hits.Length > 0){
+                    foreach(Collider2D hit in hits){
+                        BossBullet bullet = hit.GetComponent<BossBullet>();
+                        bullet?.DestroyBullet();
+                    }
                 }
-            }
 
-            yield return new WaitForSeconds(attackDelay);
-            IsRotate = true;
+                yield return new WaitForSeconds(attackDelay);
+                IsRotate = true;
+            }
         }
     }
 }

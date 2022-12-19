@@ -4839,8 +4839,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -153982107
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4934,6 +4934,14 @@ PrefabInstance:
     - target: {fileID: 1754531324710901485, guid: 5c61931aaf771f7499594839ea0e648e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754531324710901487, guid: 5c61931aaf771f7499594839ea0e648e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754531324710901487, guid: 5c61931aaf771f7499594839ea0e648e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -153982107
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c61931aaf771f7499594839ea0e648e, type: 3}

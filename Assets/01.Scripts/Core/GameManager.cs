@@ -12,5 +12,6 @@ public class GameManager : MonoSingleton<GameManager>
         }
 
         MaterialManager.Instance = gameObject.AddComponent<MaterialManager>();
+        UIManager.Instance = transform.parent.Find("UIManager").GetComponent<UIManager>();
     }
 }
