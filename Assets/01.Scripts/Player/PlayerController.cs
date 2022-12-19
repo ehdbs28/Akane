@@ -31,7 +31,10 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private void Update()
     {
-        if(_playerHealth.IsDie) return;
+        if(_playerHealth.IsDie){
+            rb.velocity = Vector3.zero;
+            return;
+        }
         Movement();
     }
 

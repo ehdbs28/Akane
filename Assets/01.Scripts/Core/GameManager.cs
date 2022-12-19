@@ -11,7 +11,12 @@ public class GameManager : MonoSingleton<GameManager>
             PoolManager.Instance.CreatePool(poolable, transform);
         }
 
-        MaterialManager.Instance = gameObject.AddComponent<MaterialManager>();
-        UIManager.Instance = transform.parent.Find("UIManager").GetComponent<UIManager>();
+        MaterialManager.Instance = new GameObject(nameof(MaterialManager)).AddComponent<MaterialManager>();
+        MaterialManager.Instance.transform.SetParent(transform.parent);
+
+        UIManager.Instance = transform.parent.Find(nameof(UIManager)).GetComponent<UIManager>();
+        
+        CameraManager.Instance = new GameObject(nameof(CameraManager)).AddComponent<CameraManager>();
+        CameraManager.Instance.transform.SetParent(transform.parent);
     }
 }

@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public float attackDelay = 1f;
 
-    private PlayerController _controller;
+    private PlayerHealth _playerHealth;
     private WeaponRotation _weaponController;
 
     private LayerMask _targetLayer;
@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         _targetLayer = LayerMask.GetMask("Enemy");
-        _controller = FindObjectOfType<PlayerController>();
+        _playerHealth = FindObjectOfType<PlayerHealth>();
         _weaponController = transform.Find("AttackPos").GetComponent<WeaponRotation>();
 
         StartCoroutine(Attack());
@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        while (_controller.enabled == true)
+        while (!_playerHealth.IsDie)
         {
             yield return new WaitUntil(() => Input.GetMouseButton(0));
             slash.Play();
@@ -75,6 +75,7 @@ public class PlayerAttack : MonoBehaviour
                 foreach(Collider2D hit in hits){
                     IDamageable damage = hit.GetComponent<IDamageable>();
                     if(damage != null){
+                        CameraManager.Instance.CameraShake(7f, 0.1f);
                         UIManager.Instance.DodgeSliderValueSet(UIManager.Instance.DodgeSliderValue + 0.2f);
                         damage.OnDamage(_playerDamage);
                     }
@@ -94,7 +95,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private IEnumerator Dodge(){
-        while(_controller.enabled == true){
+        while(!_playerHealth.IsDie){
             yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
 
             if(UIManager.Instance.DodgeSliderValue > 0){

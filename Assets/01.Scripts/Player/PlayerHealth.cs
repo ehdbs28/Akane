@@ -39,6 +39,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _currentHP -= damage;
         UIManager.Instance.SetPlayerHP(_currentHP);
 
+        CameraManager.Instance.CameraShake(5f, 0.1f);
+
         StartCoroutine(DamageCoroutine());
 
         PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
@@ -60,7 +62,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         IsDie = true;
 
-        _playerController.Rigid.velocity = Vector3.zero;
         _playerController.Animator.SetBool("IsDie", true);
         Invoke("CallBack", 0.1f);
     }
