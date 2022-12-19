@@ -5,13 +5,15 @@ using UnityEngine.Tilemaps;
 
 public class MobSpawner : MonoBehaviour
 {
+    public static MobSpawner Instance;
+
     [SerializeField] private GameObject Enemy;
     [SerializeField] private List<WavePoint> point = new List<WavePoint>();
 
     public List<EnemyBase> enemys = new List<EnemyBase>();
     public EnemyData[] datas;
 
-    int[,] waveEnemyDatas = new int[12,5]{
+    int[,] waveEnemyDatas = new int[12, 5]{
         {0,0,0,0,0},//wave1 cnt3
         {0,1,0,0,0},//wave2 cnt3
         {0,1,1,0,0},//wave3 cnt3
@@ -29,25 +31,33 @@ public class MobSpawner : MonoBehaviour
     int waveIndex = 1;
 
     private float nextStageTime = 5f;
-
-    private void Start() {
+    private void Awake()
+    {
+        Instance = this;
+    }
+    private void Start()
+    {
         StartCoroutine(Spawn());
     }
 
     [ContextMenu("ASd")]
-    private void WaveSet(){
-        print(waveEnemyDatas[waveIndex,0]);
-        print(waveEnemyDatas[waveIndex,1]);
-        print(waveEnemyDatas[waveIndex,2]);
-        for(int i = 0; i < point[waveIndex].enemyCount; i++){
-            print(waveEnemyDatas[waveIndex,i]);
+    private void WaveSet()
+    {
+        print(waveEnemyDatas[waveIndex, 0]);
+        print(waveEnemyDatas[waveIndex, 1]);
+        print(waveEnemyDatas[waveIndex, 2]);
+        for (int i = 0; i < point[waveIndex].enemyCount; i++)
+        {
+            print(waveEnemyDatas[waveIndex, i]);
         }
     }
 
-    private void EnemySet(int waveIndex){
-        for(int i = 0; i < point[waveIndex].enemyCount; i++){
+    private void EnemySet(int waveIndex)
+    {
+        for (int i = 0; i < point[waveIndex].enemyCount; i++)
+        {
             EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
-            enemy.enemy = datas[waveEnemyDatas[waveIndex,i]];
+            enemy.enemy = datas[waveEnemyDatas[waveIndex, i]];
             enemys.Add(enemy);
             enemy.transform.position = point[waveIndex].wavePosition[i];
         }
@@ -59,10 +69,13 @@ public class MobSpawner : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, angle));
     } */
 
-    IEnumerator Spawn(){
-        while(true){
+    IEnumerator Spawn()
+    {
+        while (true)
+        {
             print(EnemyCntCheck());
-            if(EnemyCntCheck()){
+            if (EnemyCntCheck())
+            {
                 EnemySet(waveIndex);
                 waveIndex++;
             }
@@ -70,11 +83,14 @@ public class MobSpawner : MonoBehaviour
         }
     }
 
-    private bool EnemyCntCheck(){
-        if(enemys.Count == 0){
+    private bool EnemyCntCheck()
+    {
+        if (enemys.Count == 0)
+        {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
