@@ -19,6 +19,8 @@ public class PlayerController : MonoSingleton<PlayerController>
         set => _isDying = value;
     }
 
+    public float hp = 100f;
+
     private void Awake()
     {
         animator = transform.Find("PlayerSprite").GetComponent<Animator>();
@@ -77,5 +79,15 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
             
         }
+    }
+
+    public void Slow(){
+        StartCoroutine(Slowly());
+    }
+
+    IEnumerator Slowly(){
+        _speed = 3;
+        yield return new WaitForSeconds(1f);
+        _speed = 5;
     }
 }

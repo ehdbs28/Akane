@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe0563026a7bcd46b3472063e3a4f6a, type: 3}
-  m_Name: Wave 1
+  m_Script: {fileID: 11500000, guid: fe6c32fc47c327e4b8420ea9edb2f31e, type: 3}
+  m_Name: Far
   m_EditorClassIdentifier: 
-  wavePosition:
-  - {x: -3, y: 4, z: 0}
-  - {x: -3, y: -3, z: 0}
-  - {x: 2, y: -1, z: 0}
+  isFar: 1
+  checkRadius: 100
+  damage: 5
+  hp: 5
+  speed: 5
