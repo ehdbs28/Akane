@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _maxHP;
+    [SerializeField] private float _phase2HP;
     private float _currentHP;
 
     [SerializeField] private float _damageDelay;
@@ -19,6 +20,8 @@ public class Boss : MonoBehaviour, IDamageable
 
     public bool IsStun {get; set;}
     public bool IsDie {get; set;}
+
+    public bool IsPhase {get; set;} = false;
 
     private void Awake() {
         _currentHP = _maxHP;
@@ -41,6 +44,9 @@ public class Boss : MonoBehaviour, IDamageable
         attackParticle.Play(); bossBrokenParticle.Play();
         
         _currentHP -= damage;
+        if(_currentHP <= _phase2HP){
+            IsPhase = true;
+        }
         if(_currentHP <= 0){
             OnDie();
         }
@@ -72,7 +78,6 @@ public class Boss : MonoBehaviour, IDamageable
                     bigBullet.Bounce();
                 }
             }
-            
         }
     }
 }

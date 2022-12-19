@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RollAttackAction : AIAction
 {
+    [ColorUsage(true, true)][SerializeField] private Color _bulletPhase2Color;
+
     [SerializeField] private float _rollingSpeed = 5f;
     [SerializeField] private LayerMask _whatIsWallLayer;
 
@@ -24,14 +26,14 @@ public class RollAttackAction : AIAction
         if(hit.collider){
             Vector3 replectVec = Vector3.Reflect(_lastVelocity, hit.normal);
             BulletCreatePattern();
-            _brain.Rigid.velocity = replectVec.normalized * _rollingSpeed;
+            _brain.Rigid.velocity = replectVec.normalized * ((_brain.Boss.IsPhase) ? _rollingSpeed * 2 : _rollingSpeed);
         }
     }
 
     public override void Reset()
     {
         _brain.Rigid.velocity = Vector2.zero;
-        _brain.Rigid.velocity = _moveDir * _rollingSpeed;
+        _brain.Rigid.velocity = _moveDir * ((_brain.Boss.IsPhase) ? _rollingSpeed * 2 : _rollingSpeed);
 
         _brain.Animator.SetBool("IsSkill", true);
         _brain.Animator.SetInteger("Pattern", 2);
@@ -40,7 +42,7 @@ public class RollAttackAction : AIAction
     private void BulletCreatePattern(){
         int startAngle = 0;
         int endAngle = 360;
-        int angleInterval = 30;
+        int angleInterval = 60;
 
         Vector3 originPos = _brain.transform.position;
 
@@ -50,6 +52,7 @@ public class RollAttackAction : AIAction
             BossBullet bullet = PoolManager.Instance.Pop("BossBullet") as BossBullet;
             bullet.transform.position = originPos;
             bullet.SetVelocity(dir);
+            if(_brain.Boss.IsPhase) bullet.SetBulletColor(_bulletPhase2Color);
         }
     }
 }

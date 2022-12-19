@@ -5,13 +5,14 @@ using UnityEngine;
 public class BigMissileAttack : AIAction
 {
     [ColorUsage(true, true)][SerializeField] private Color _bulletColor;
+    [ColorUsage(true, true)][SerializeField] private Color _bulletPhase2Color;
     private float _waitTime = 0;
 
     public override void Reset()
     {
         IsPlayAction = false;
         _brain.Rigid.velocity = Vector2.zero;
-        _waitTime = 1f;
+        _waitTime = (_brain.Boss.IsPhase) ? 0.5f : 1f;
 
         _brain.Animator.SetBool("IsSkill", true);
         _brain.Animator.SetInteger("Pattern", 1);
@@ -32,7 +33,7 @@ public class BigMissileAttack : AIAction
         else{
             BigBullet bullet = PoolManager.Instance.Pop("BigBullet") as BigBullet;
             bullet.transform.position = originPos;
-            bullet.SetBulletColor(_bulletColor);
+            bullet.SetBulletColor((_brain.Boss.IsPhase) ? _bulletPhase2Color : _bulletColor);
 
             bullet.Bounce();
 

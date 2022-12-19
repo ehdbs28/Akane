@@ -32,7 +32,8 @@ public class UIManager : MonoBehaviour
 
         _playerImg = _bossCutScenePanel.transform.Find("Player").Find("PlayerImg").GetComponent<RectTransform>();
         _playerNameBG = _playerImg.parent.Find("PlayerNameBackGround").GetComponent<RectTransform>();
-        _playerNameTxt = _playerImg.parent.Find("PlayerName").GetComponent<RectTransform>();
+
+        BossCutSceneUP();
     }
 
     public void SetPlayerHP(float hp){
@@ -64,8 +65,7 @@ public class UIManager : MonoBehaviour
         _sequence.Append(_bossNameBG.DOAnchorPos(new Vector2(-368, -63), 0.5f));
         _sequence.Append(_playerNameBG.DOAnchorPos(new Vector2(291, 227), 0.5f));
         
-        _sequence.Append(_bossNameTxt.DOAnchorPos(new Vector2(-160, 20), 0.5f));
-        _sequence.Append(_playerNameTxt.DOAnchorPos(new Vector2(64, 7), 0.5f));
+        _sequence.Append(_bossNameTxt.DOAnchorPos(new Vector2(-180, 20), 0.5f));
         
         _sequence.Append(_bossImg.DOAnchorPos(new Vector2(-555, 424), 0.2f));
         _sequence.Append(_playerImg.DOAnchorPos(new Vector2(350, -258), 0.2f));
@@ -81,8 +81,7 @@ public class UIManager : MonoBehaviour
         _sequence.Append(_bossImg.DOAnchorPos(new Vector2(-468, -409), 0.2f));
         _sequence.Append(_playerImg.DOAnchorPos(new Vector2(380, 241), 0.2f));
 
-        _sequence.Append(_bossNameTxt.DOAnchorPos(new Vector2(260, 20), 0.5f));
-        _sequence.Append(_playerNameTxt.DOAnchorPos(new Vector2(-163, 7), 0.5f));
+        _sequence.Append(_bossNameTxt.DOAnchorPos(new Vector2(280, 20), 0.5f));
         
         _sequence.Append(_bossNameBG.DOAnchorPos(new Vector2(-1393, -543), 0.5f));
         _sequence.Append(_playerNameBG.DOAnchorPos(new Vector2(976, 548), 0.5f));
