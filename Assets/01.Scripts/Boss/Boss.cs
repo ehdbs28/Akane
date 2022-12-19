@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour, IDamageable
     private Rigidbody2D _rigid;
     private WaitForSeconds _damageDelayTime;
     private Animator _animator;
+    private Material _spriteOutlineMat;
 
     public bool IsStun {get; set;}
     public bool IsDie {get; set;}
@@ -29,6 +30,9 @@ public class Boss : MonoBehaviour, IDamageable
         _damageDelayTime = new WaitForSeconds(_damageDelay);
         _animator = GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
+
+        _spriteOutlineMat = _spriteRenderer.material;
+        _spriteOutlineMat.SetFloat("_OutLineThickness", 0f);
     }
 
     public void OnDamage(float damage)
