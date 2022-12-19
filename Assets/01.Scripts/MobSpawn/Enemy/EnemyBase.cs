@@ -11,13 +11,52 @@ public class EnemyBase : Poolable
 
     [SerializeField] private GameObject bulletPrefabs;
 
+    Material _material;
+    private float _fade = 0;
     private bool isDie;
     public bool IsDie { get => isDie; set => isDie = value; }
 
     public override void Reset()
     {
         Debug.Log($"{this.name} : excute method Reset");
+        IsDie = false;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        _material = sr.material;
+        sr.color = Color.white;
+        _material.SetFloat("_Dissolve", 0);
+        EnemyHealth eh = GetComponent<EnemyHealth>();
+        eh.hp = enemy.hp;
+        StartCoroutine(DissolveOn());
         StartCoroutine(AttackRoutine());
+    }
+
+    IEnumerator DissolveOn(){
+        while(!IsDie){
+            _fade += Time.deltaTime;
+            if(_fade >= 1){
+                _fade = 1;
+                StopCoroutine(DissolveOn());
+            }
+            _material.SetFloat("_Dissolve",_fade);
+            yield return null;
+        }
+    }
+    IEnumerator DissolveOff(){
+        while(IsDie){
+            _fade -= Time.deltaTime;
+            if(_fade <= 0){
+                _fade = 0;
+                StopCoroutine(DissolveOff());
+                PoolManager.Instance.Push(this);
+            }
+            _material.SetFloat("_Dissolve",_fade);
+            
+            yield return null;
+        }
+    }
+
+    public void DissolveOffFunc(){
+        StartCoroutine(DissolveOff());
     }
 
     private void Update()

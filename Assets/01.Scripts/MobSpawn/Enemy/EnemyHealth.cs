@@ -39,9 +39,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void OnDie(){
         EnemyBase enemyBase = GetComponent<EnemyBase>();
-        MobSpawner.Instance.enemys.Remove(enemyBase);
-        PoolManager.Instance.Push(enemyBase);
         enemyBase.IsDie = true;
+        MobSpawner.Instance.enemys.Remove(enemyBase);
+        enemyBase.DissolveOffFunc();
     }
 
     private IEnumerator ColorChanger(){

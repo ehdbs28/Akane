@@ -7,7 +7,6 @@ public class MobSpawner : MonoBehaviour
 {
     public static MobSpawner Instance;
 
-    [SerializeField] private GameObject Enemy;
     [SerializeField] private List<WavePoint> point = new List<WavePoint>();
 
     public List<EnemyBase> enemys = new List<EnemyBase>();
@@ -28,7 +27,7 @@ public class MobSpawner : MonoBehaviour
         {0,1,1,1,1},//wave14 cnt5
     };
 
-    int waveIndex = 1;
+    int waveIndex = 0;
 
     private float nextStageTime = 5f;
     private void Awake()
