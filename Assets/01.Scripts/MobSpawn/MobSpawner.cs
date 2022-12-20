@@ -19,8 +19,6 @@ public class MobSpawner : MonoBehaviour
 
     public Transform[] shootPos;
 
-    public Image panel;
-
     int[,] waveEnemyDatas = new int[12, 5]{
         {0,0,0,0,0},//wave1 cnt3
         {0,1,0,0,0},//wave2 cnt3
@@ -52,8 +50,9 @@ public class MobSpawner : MonoBehaviour
     private void EnemySet(int waveIndex)
     {
         try{
+            SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "MonsterSpawn");
             for (int i = 0; i < point[waveIndex].enemyCount; i++)
-        {
+            {
             EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
             enemy.enemy = datas[waveEnemyDatas[waveIndex, i]];
             enemy.GetComponentInChildren<EnemyAnimationChooser>().Chooser();
@@ -62,15 +61,16 @@ public class MobSpawner : MonoBehaviour
             }
         }
         catch(ArgumentOutOfRangeException){
-            StartCoroutine(Fade());
+            SceneTransManager.Instance.SceneChange("Main");
         }
     }
 
-    IEnumerator Fade(){
-        yield return new WaitForSeconds(5.5f);
-        panel.DOFade(1, 1f);
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(1);
+    /* public void SetEnemy(float scale, Vector2 pos,float angle){
+        transform.position = pos;
+        transform
+        catch(ArgumentOutOfRangeException){
+            SceneTransManager.Instance.SceneChange("Main");
+        }
     }
 
     /* public void SetEnemy(float scale, Vector2 pos,float angle){
@@ -83,7 +83,6 @@ public class MobSpawner : MonoBehaviour
     {
         while (true)
         {
-            print(realWaveIndex);
             if (!_specialPattern)
             {
                 if(EnemyCntCheck()){
@@ -108,6 +107,7 @@ public class MobSpawner : MonoBehaviour
     IEnumerator ShootBulletPattern(){
         int shootCnt = 0;
         while(shootCnt!=4){
+            SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "Laser");
             GameObject obj = Instantiate(laser);
             float rand = UnityEngine.Random.Range(0, 360);
 

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,9 @@ TagManager:
     locked: 0
   - name: BackGround
     uniqueID: 1265948919
+    locked: 0
+  - name: PlayerableEffect
+    uniqueID: 2342144491
     locked: 0
   - name: Playerable
     uniqueID: 3302979375

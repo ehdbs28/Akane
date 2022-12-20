@@ -6,6 +6,7 @@ public class IsStun : AIDecision
 {
     public override bool MakeADecision()
     {
+        if(_brain.Boss.IsPhaseCutScene) return true;
         return _brain.Boss.IsStun;
     }
 }

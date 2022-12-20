@@ -25,7 +25,6 @@ public class LastingEffect : PoolingParticle
         ws_Disable = new WaitForSeconds(main.startLifetime.constantMax);
 
         var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
-        renderer.sortingLayerName = "Effect";
 
         _particleSystem.Play();
 
@@ -43,8 +42,6 @@ public class LastingEffect : PoolingParticle
         main.simulationSpeed = 0f;
 
         var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
-        renderer.sortingLayerName = "Default";
-        renderer.sortingOrder = -1;
 
         yield return ws_Disable;
 

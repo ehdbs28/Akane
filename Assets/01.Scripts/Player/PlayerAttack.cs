@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public float attackDelay = 1f;
 
-    private PlayerController _controller;
+    private PlayerHealth _playerHealth;
     private WeaponRotation _weaponController;
 
     Animator anim;
@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         _targetLayer = LayerMask.GetMask("Enemy");
-        _controller = FindObjectOfType<PlayerController>();
+        _playerHealth = FindObjectOfType<PlayerHealth>();
         _weaponController = transform.Find("AttackPos").GetComponent<WeaponRotation>();
         anim = GetComponent<Animator>();
         StartCoroutine(Attack());
@@ -65,9 +65,12 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        while (_controller.enabled == true)
+        while (!_playerHealth.IsDie)
         {
             yield return new WaitUntil(() => Input.GetMouseButton(0));
+
+            SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "PlayerAttack");
+
             slash.Play();
             _weaponController.WeaponAttack();
             _weaponController.IsWeaponSlash = true;
@@ -80,11 +83,12 @@ public class PlayerAttack : MonoBehaviour
 
             Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
             float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
-            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
+            Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(5.5f, 2f), rotation, _targetLayer);
             if(hits.Length > 0){
                 foreach(Collider2D hit in hits){
                     IDamageable damage = hit.GetComponent<IDamageable>();
                     if(damage != null){
+                        CameraManager.Instance.CameraShake(7f, 0.1f);
                         UIManager.Instance.DodgeSliderValueSet(UIManager.Instance.DodgeSliderValue + 0.2f);
                         damage.OnDamage(_playerDamage);
                     }
@@ -104,10 +108,12 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private IEnumerator Dodge(){
-        while(_controller.enabled == true){
+        while(!_playerHealth.IsDie){
             yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
 
             if(UIManager.Instance.DodgeSliderValue > 0){
+                SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "Whoosh");
+
                 UIManager.Instance.DodgeSliderValueSet(UIManager.Instance.DodgeSliderValue - 0.2f);
 
                 slash.Play();
@@ -122,7 +128,7 @@ public class PlayerAttack : MonoBehaviour
 
                 Vector3 attackPos = transform.position + (Vector3)_weaponController.MouseInput.normalized;
                 float rotation = Mathf.Atan2((attackPos - transform.position).y, (attackPos - transform.position).x) * Mathf.Rad2Deg;
-                Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(4f, 1.5f), rotation, _targetLayer);
+                Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, new Vector3(5.5f, 2f), rotation, _targetLayer);
                 if(hits.Length > 0){
                     foreach(Collider2D hit in hits){
                         BossBullet bullet = hit.GetComponent<BossBullet>();

@@ -19,6 +19,18 @@ public class EnemyBullet : MonoBehaviour
         if(other.CompareTag("Player")){
             other.GetComponent<PlayerHealth>().OnDamage(1);
             other.GetComponent<PlayerController>().Slow();
+
+            PoolingParticle deadParticle = PoolManager.Instance.Pop("BulletDeleteParticle") as PoolingParticle;
+            deadParticle.SetPosition(transform.position);
+            deadParticle.Play(1f);
+
+            float normalScale = 0.5f;
+            float particleScale = deadParticle.transform.localScale.x;
+            float targetScale = transform.localScale.x; 
+            float scale = particleScale * targetScale / normalScale;
+
+            deadParticle.transform.localScale = Vector3.one * scale;
+
             Destroy(gameObject);
         }
     }

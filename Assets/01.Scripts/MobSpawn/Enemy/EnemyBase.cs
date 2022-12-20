@@ -18,7 +18,6 @@ public class EnemyBase : Poolable
 
     public override void Reset()
     {
-        Debug.Log($"{this.name} : excute method Reset");
         IsDie = false;
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         _material = sr.material;
@@ -93,7 +92,6 @@ public class EnemyBase : Poolable
     private void FixedUpdate()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, enemy.checkRadius, layer);
-        print(hit.name);
         if (hit != null && !AttackCheck())
         {
             target = hit.transform;
@@ -114,8 +112,10 @@ public class EnemyBase : Poolable
         {
             if (enemy.isFar)
             {
-                float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg + -90;
-                GameObject bullet = Instantiate(bulletPrefabs, transform.position, Quaternion.Euler(0, 0, angle));
+                //float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg + -90;
+                BossBullet bullet = PoolManager.Instance.Pop("EnemyBullet") as BossBullet;
+                bullet.transform.position = transform.position;
+                bullet.SetVelocity((target.position - transform.position).normalized);
                 GetComponentInChildren<Animator>().SetTrigger("Attack");
             }
             else

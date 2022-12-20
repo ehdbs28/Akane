@@ -23,8 +23,6 @@ public class EnemyAnimationChooser : MonoBehaviour
             animator.runtimeAnimatorController = anim[1];
         }
         else{
-            print($"{sprite.sprite}");
-            print($"{sprites[0]}");
             sprite.sprite = sprites[0];
             animator.runtimeAnimatorController = anim[0];
         }

@@ -27,19 +27,20 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _currentHP = _maxHP;
         _damageDelayTime = new WaitForSeconds(_damageDelay);
         _playerController = GetComponent<PlayerController>();
-
     }
 
-    private void Start()
-    {
+    private void Start() {
         UIManager.Instance.SetPlayerHP(_currentHP);
     }
+
     public void OnDamage(float damage)
     {
         if (IsDie) return;
 
         _currentHP -= damage;
         UIManager.Instance.SetPlayerHP(_currentHP);
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "PlayerOuch");
+        CameraManager.Instance.CameraShake(5f, 0.1f);
 
         StartCoroutine(DamageCoroutine());
 
@@ -64,11 +65,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         IsDie = true;
 
-        _playerController.Rigid.velocity = Vector3.zero;
         _playerController.Animator.SetBool("IsDie", true);
-        Invoke("CallBack", 0.1f);
+        Invoke("DieCallBack", 0.3f);
     }
 
+    private void DieCallBack(){
+        GameManager.Instance.IsGameStop = true;
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "GameOver");
+        SoundManager.Instance.StopBGM();
+        UIManager.Instance.GameOver(transform.position);
+    }
+    
     private void CallBack()
     {
         _playerController.Animator.SetBool("IsDie", false);

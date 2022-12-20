@@ -11,9 +11,9 @@ public class AIBrain : MonoBehaviour
 
     private AIStateInfo _stateInfo;
 
-    public Animator Animator;
-    public Rigidbody2D Rigid;
-    public Collider2D Collider;
+    public Animator Animator => Boss?.Animator;
+    public Rigidbody2D Rigid => Boss?.Rigid;
+    public Collider2D Collider => Boss?.Collider2D;
 
     public Transform Player;
     public Boss Boss;
@@ -24,9 +24,6 @@ public class AIBrain : MonoBehaviour
     private void Awake() {
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
         Player = GameObject.Find("Player").transform;
-        Animator = GetComponent<Animator>();
-        Rigid = GetComponent<Rigidbody2D>();
-        Collider = GetComponent<Collider2D>();
         Boss = GetComponent<Boss>();
     }
 
@@ -45,7 +42,7 @@ public class AIBrain : MonoBehaviour
     }
 
     protected virtual void Update(){
-        if(Boss.IsDie) return;
+        if(Boss.IsPhaseCutScene || Boss.IsDie) return;
         
         _currentState.UpdateState();
     }
