@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/00.Scenes/Tutorial.unity
     guid: b0b27afae3d3e154b844b49095aaac17
   - enabled: 1
-    path: Assets/00.Scenes/Doyun.unity
+    path: Assets/00.Scenes/Main.unity
     guid: f889768e1d6585b43a44776e51c1ed91
   m_configObjects: {}
