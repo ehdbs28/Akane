@@ -51,7 +51,7 @@ public class RollAttackAction : AIAction
 
             BossBullet bullet = PoolManager.Instance.Pop("BossBullet") as BossBullet;
             bullet.transform.position = originPos;
-            if(_brain.Boss.IsPhase) bullet.BulletSpeed = 8; 
+            if(_brain.Boss.IsPhase) bullet.BulletSpeed = 10; 
             bullet.SetVelocity(dir);
             if(_brain.Boss.IsPhase) bullet.SetBulletColor(_bulletPhase2Color);
         }

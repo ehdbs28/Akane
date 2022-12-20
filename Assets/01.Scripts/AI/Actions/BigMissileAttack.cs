@@ -33,7 +33,7 @@ public class BigMissileAttack : AIAction
         else{
             BigBullet bullet = PoolManager.Instance.Pop("BigBullet") as BigBullet;
             bullet.transform.position = originPos;
-            if(_brain.Boss.IsPhase) bullet.BulletSpeed = 8; 
+            if(_brain.Boss.IsPhase) bullet.BulletSpeed = 10; 
             bullet.SetBulletColor((_brain.Boss.IsPhase) ? _bulletPhase2Color : _bulletColor);
 
             bullet.Bounce();

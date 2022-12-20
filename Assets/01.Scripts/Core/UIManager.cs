@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
         float currentValue = _bossHPSlider.value;
 
         while(currentTime <= 0.5f){
-            currentTime += Time.deltaTime;
+            currentTime += Time.deltaTime * 5;
             _bossHPSlider.value = Mathf.Lerp(currentValue, value, currentTime / 0.5f);
             yield return null;
         }
@@ -67,8 +67,8 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         currentTime = 0;
-        while(currentTime <= 0.5f){
-            currentTime += Time.deltaTime;
+        while(currentTime <= 1f){
+            currentTime += Time.deltaTime * 10;
             _bossHPSlider_BackGround.value = Mathf.Lerp(currentValue, value, currentTime / 0.5f);
             yield return null;
         }
