@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : SelectMenu
 {
@@ -15,7 +16,7 @@ public class GameOver : SelectMenu
     {
         switch(cursorValue){
             case 0:
-                //현재 씬 다시 로드 추가
+                SceneTransManager.Instance.SceneChange(SceneManager.GetActiveScene().name);
                 Debug.Log("Restart");
                 break;
             case 1:

@@ -11,12 +11,9 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource _bgmSource;
 
-    private void Awake() {
-        _bgmSource = Camera.main.GetComponent<AudioSource>();
-    }
-
     private void Start() {
-        PlayBGM(GameManager.Instance.BossPhase1BGM);
+        _bgmSource = Camera.main.GetComponent<AudioSource>();
+        if(GameManager.Instance.CurrentScene == 1) PlayBGM(GameManager.Instance.BossPhase1BGM);
     }
 
     public void StopBGM(){

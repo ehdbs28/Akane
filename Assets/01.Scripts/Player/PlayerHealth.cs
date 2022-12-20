@@ -33,10 +33,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         UIManager.Instance.SetPlayerHP(_currentHP);
     }
 
-    private void Start()
-    {
-        UIManager.Instance.SetPlayerHP(_currentHP);
-    }
     public void OnDamage(float damage)
     {
         if (IsDie) return;

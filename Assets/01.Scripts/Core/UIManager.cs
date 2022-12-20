@@ -36,21 +36,23 @@ public class UIManager : MonoBehaviour
 
     private Sequence _sequence;
 
-    private void Awake() {
-        _bossImg = _bossCutScenePanel.transform.Find("Boss").Find("BossImg").GetComponent<RectTransform>();
-        _bossNameBG = _bossImg.parent.Find("BossNameBackGround").GetComponent<RectTransform>();
-        _bossNameTxt = _bossImg.parent.Find("BossName").GetComponent<RectTransform>();
+    private void Start() {
+        if(GameManager.Instance.CurrentScene == 1){
+            _bossImg = _bossCutScenePanel.transform.Find("Boss").Find("BossImg").GetComponent<RectTransform>();
+            _bossNameBG = _bossImg.parent.Find("BossNameBackGround").GetComponent<RectTransform>();
+            _bossNameTxt = _bossImg.parent.Find("BossName").GetComponent<RectTransform>();
 
-        _playerImg = _bossCutScenePanel.transform.Find("Player").Find("PlayerImg").GetComponent<RectTransform>();
-        _playerNameBG = _playerImg.parent.Find("PlayerNameBackGround").GetComponent<RectTransform>();
+            _playerImg = _bossCutScenePanel.transform.Find("Player").Find("PlayerImg").GetComponent<RectTransform>();
+            _playerNameBG = _playerImg.parent.Find("PlayerNameBackGround").GetComponent<RectTransform>();
 
+
+            _gameClearPanel = _canvas.transform.Find("GameClearPanel").gameObject;
+            _gameClearBoss = _gameClearPanel.transform.Find("BossDieSprite").GetComponent<RectTransform>(); 
+
+            BossCutSceneUP();
+        }
         _gameOverPanel = _canvas.transform.Find("GameOverPanel").gameObject;
         _gameOverPlayer =_gameOverPanel.transform.Find("PlayerDieSprite").GetComponent<RectTransform>();
-
-        _gameClearPanel = _canvas.transform.Find("GameClearPanel").gameObject;
-        _gameClearBoss = _gameClearPanel.transform.Find("BossDieSprite").GetComponent<RectTransform>(); 
-
-        BossCutSceneUP();
     }
 
     public void GameOver(Vector3 playerPos){

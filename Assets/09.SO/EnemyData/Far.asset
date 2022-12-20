@@ -16,4 +16,4 @@ MonoBehaviour:
   checkRadius: 100
   damage: 5
   hp: 5
-  speed: 5
+  speed: 3

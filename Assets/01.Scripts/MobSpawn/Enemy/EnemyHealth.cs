@@ -21,15 +21,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void OnDamage(float damage)
     {
-        //PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
-        //PoolingParticle bossBrokenParticle = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
-
-        StartCoroutine(ColorChanger());
-
-        //attackParticle.SetPosition(transform.position);
-        //bossBrokenParticle.SetPosition(transform.position);
-
-        //attackParticle.Play(); bossBrokenParticle.Play();
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "MonsterHit");
+        PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
+        attackParticle.SetPosition(transform.position);
+        attackParticle.Play(); 
+        
+        StartCoroutine(ColorChanger()); 
         
         hp -= damage;
         if(hp <= 0){

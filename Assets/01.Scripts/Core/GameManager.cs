@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -14,7 +15,12 @@ public class GameManager : MonoSingleton<GameManager>
     public AudioClip BossPhase1BGM {get; private set;}
     public AudioClip BossPhase2BGM {get; private set;}
 
+    public int CurrentScene {get; private set;} 
+
     private void Awake() {
+        CurrentScene = SceneManager.GetActiveScene().buildIndex;
+        IsGameStop = false;
+
         foreach(Poolable poolable in _poolList){
             PoolManager.Instance.CreatePool(poolable, transform);
         }
@@ -33,10 +39,13 @@ public class GameManager : MonoSingleton<GameManager>
         SoundManager.Instance = transform.parent.Find(nameof(SoundManager)).GetComponent<SoundManager>();
 
         PlayerSource = GameObject.Find("Player").GetComponent<AudioSource>();
-        BossSource = GameObject.Find("Boss").GetComponent<AudioSource>();
 
-        BossPhase1BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase1BGM");
-        BossPhase2BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase2BGM");
+        if(CurrentScene == 1){
+            BossSource = GameObject.Find("Boss").GetComponent<AudioSource>();
+
+            BossPhase1BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase1BGM");
+            BossPhase2BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase2BGM");
+        }
     }
 
     private void GameStop(bool gameStop){
