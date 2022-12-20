@@ -69,7 +69,6 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        //공격 튕기는거 테스트 용임
         if(other.CompareTag("Bullet")){
             BossBullet bullet = other.GetComponent<BossBullet>();
             
@@ -77,6 +76,10 @@ public class PlayerController : MonoSingleton<PlayerController>
                 _playerHealth.OnDamage(bullet.BulletDamage);
                 bullet.DestroyBullet(); 
             }
+        }
+
+        if(other.CompareTag("Boss")){
+            _playerHealth.OnDamage(1f);
         }
     }
 
