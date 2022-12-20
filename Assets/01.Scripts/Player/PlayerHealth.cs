@@ -63,10 +63,5 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         IsDie = true;
 
         _playerController.Animator.SetBool("IsDie", true);
-        Invoke("CallBack", 0.1f);
-    }
-
-    private void CallBack(){
-        _playerController.Animator.SetBool("IsDie", false);
     }
 }

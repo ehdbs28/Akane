@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         _playerImg = _bossCutScenePanel.transform.Find("Player").Find("PlayerImg").GetComponent<RectTransform>();
         _playerNameBG = _playerImg.parent.Find("PlayerNameBackGround").GetComponent<RectTransform>();
 
-        BossCutSceneUP();
+        //BossCutSceneUP();
     }
 
     public void SetPlayerHP(float hp){

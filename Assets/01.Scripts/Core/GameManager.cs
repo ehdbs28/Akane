@@ -6,7 +6,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private List<Poolable> _poolList;
 
-    public bool IsGameStop {get; set;}
+    public bool IsGameStop {get => IsGameStop; set => GameStop(value); }
 
     private void Awake() {
         foreach(Poolable poolable in _poolList){
@@ -20,13 +20,12 @@ public class GameManager : MonoSingleton<GameManager>
         
         CameraManager.Instance = new GameObject(nameof(CameraManager)).AddComponent<CameraManager>();
         CameraManager.Instance.transform.SetParent(transform.parent);
+
+        TimeScaleManager.Instance = new GameObject(nameof(TimeScaleManager)).AddComponent<TimeScaleManager>();
+        TimeScaleManager.Instance.transform.SetParent(transform.parent);
     }
 
-    private void Update() {
-        GameStop();
-    }
-
-    private void GameStop(){
-        Time.timeScale = (IsGameStop) ? 0f : 1f;
+    private void GameStop(bool gameStop){
+        Time.timeScale = (gameStop) ? 0f : 1f;
     }
 }

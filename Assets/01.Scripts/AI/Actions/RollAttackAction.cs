@@ -42,7 +42,7 @@ public class RollAttackAction : AIAction
     private void BulletCreatePattern(){
         int startAngle = 0;
         int endAngle = 360;
-        int angleInterval = 60;
+        int angleInterval = (_brain.Boss.IsPhase) ? 36 : 60;
 
         Vector3 originPos = _brain.transform.position;
 
@@ -51,6 +51,7 @@ public class RollAttackAction : AIAction
 
             BossBullet bullet = PoolManager.Instance.Pop("BossBullet") as BossBullet;
             bullet.transform.position = originPos;
+            if(_brain.Boss.IsPhase) bullet.BulletSpeed = 8; 
             bullet.SetVelocity(dir);
             if(_brain.Boss.IsPhase) bullet.SetBulletColor(_bulletPhase2Color);
         }

@@ -10,6 +10,7 @@ public class BossBullet : Poolable
     private MeshRenderer _meshRenderer;
 
     public float BulletDamage => _bulletDamage;
+    public float BulletSpeed {get => _bulletSpeed; set => _bulletSpeed = value;}
 
     protected virtual void Awake() {
         _rigid = GetComponent<Rigidbody2D>();

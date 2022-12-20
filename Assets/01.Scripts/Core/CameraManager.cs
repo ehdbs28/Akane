@@ -11,6 +11,11 @@ public class CameraManager : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin _mainVCamPerlin;
 
     private WaitForSeconds _shakeDuration;
+    private WaitForSecondsRealtime _zoomDuration;
+
+    private float _zoomDelay = 0.5f;
+
+    public Transform CurrentCamFallowTarget => _mainVCam?.Follow;
 
     private void Awake() {
         _mainVCam = GameObject.Find("Main VCam").GetComponent<CinemachineVirtualCamera>();
@@ -34,4 +39,32 @@ public class CameraManager : MonoBehaviour
         yield return _shakeDuration;
         _mainVCamPerlin.m_AmplitudeGain = 0;
     }
+
+    public void CameraFallowerSet(Transform target){
+        _mainVCam.Follow = target;
+    }
+
+    public void CameraZoom(float endValue, float duration){
+        _zoomDuration = new WaitForSecondsRealtime(duration);
+        StartCoroutine(Zoom(endValue));
+    }
+
+    private IEnumerator Zoom(float endValue){
+        float currentTime = 0f;
+        float initCamSize = _mainVCam.m_Lens.OrthographicSize;
+
+        while(currentTime <= _zoomDelay){
+            currentTime += Time.unscaledDeltaTime;
+            _mainVCam.m_Lens.OrthographicSize = Mathf.Lerp(initCamSize, endValue, currentTime * 2);
+            yield return null;
+        }
+
+        yield return _zoomDuration;
+
+        while(currentTime >= 0){
+            currentTime -= Time.deltaTime;
+            _mainVCam.m_Lens.OrthographicSize = Mathf.Lerp(initCamSize, endValue, currentTime * 2);
+            yield return null;
+        }
+    } 
 }
