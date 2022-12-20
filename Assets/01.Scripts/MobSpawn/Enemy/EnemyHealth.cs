@@ -2,31 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+using System.Threading;
+
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     public float hp;
-    [SerializeField] private EnemyData enemy;
+    public EnemyData enemy;
 
     private SpriteRenderer spriteRenderer;
 
     private void Awake() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void Start() {
+        enemy = gameObject.GetComponent<EnemyBase>().enemy;
         hp = enemy.hp;
     }
 
     public void OnDamage(float damage)
     {
-        PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
-        PoolingParticle bossBrokenParticle = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
+        //PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
+        //PoolingParticle bossBrokenParticle = PoolManager.Instance.Pop("BossBrokenEffect") as PoolingParticle;
 
         StartCoroutine(ColorChanger());
 
-        attackParticle.SetPosition(transform.position);
-        bossBrokenParticle.SetPosition(transform.position);
+        //attackParticle.SetPosition(transform.position);
+        //bossBrokenParticle.SetPosition(transform.position);
 
-        attackParticle.Play(); bossBrokenParticle.Play();
+        //attackParticle.Play(); bossBrokenParticle.Play();
         
         hp -= damage;
         if(hp <= 0){
@@ -36,7 +39,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void OnDie(){
         EnemyBase enemyBase = GetComponent<EnemyBase>();
-        enemyBase.IsDie = false;
+        enemyBase.IsDie = true;
+        MobSpawner.Instance.enemys.Remove(enemyBase);
+
+        enemyBase.DissolveOffFunc();
     }
 
     private IEnumerator ColorChanger(){

@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
+using DG.Tweening;
 
 public class MobSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject Enemy;
+    public static MobSpawner Instance;
+
+    public GameObject laser;
+
     [SerializeField] private List<WavePoint> point = new List<WavePoint>();
 
     public List<EnemyBase> enemys = new List<EnemyBase>();
     public EnemyData[] datas;
 
-    int[,] waveEnemyDatas = new int[12,5]{
+    public Transform[] shootPos;
+
+    public Image panel;
+
+    int[,] waveEnemyDatas = new int[12, 5]{
         {0,0,0,0,0},//wave1 cnt3
         {0,1,0,0,0},//wave2 cnt3
         {0,1,1,0,0},//wave3 cnt3
@@ -26,31 +36,41 @@ public class MobSpawner : MonoBehaviour
         {0,1,1,1,1},//wave14 cnt5
     };
 
-    int waveIndex = 1;
-
+    int waveIndex = 0;
+    int realWaveIndex = 1;
+    bool _specialPattern = false;
     private float nextStageTime = 5f;
-
-    private void Start() {
+    private void Awake()
+    {
+        Instance = this;
+    }
+    private void Start()
+    {
         StartCoroutine(Spawn());
     }
 
-    [ContextMenu("ASd")]
-    private void WaveSet(){
-        print(waveEnemyDatas[waveIndex,0]);
-        print(waveEnemyDatas[waveIndex,1]);
-        print(waveEnemyDatas[waveIndex,2]);
-        for(int i = 0; i < point[waveIndex].enemyCount; i++){
-            print(waveEnemyDatas[waveIndex,i]);
+    private void EnemySet(int waveIndex)
+    {
+        try{
+            for (int i = 0; i < point[waveIndex].enemyCount; i++)
+        {
+            EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
+            enemy.enemy = datas[waveEnemyDatas[waveIndex, i]];
+            enemy.GetComponentInChildren<EnemyAnimationChooser>().Chooser();
+            enemys.Add(enemy);
+            enemy.transform.position = point[waveIndex].wavePosition[i];
+            }
+        }
+        catch(ArgumentOutOfRangeException){
+            StartCoroutine(Fade());
         }
     }
 
-    private void EnemySet(int waveIndex){
-        for(int i = 0; i < point[waveIndex].enemyCount; i++){
-            EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
-            enemy.enemy = datas[waveEnemyDatas[waveIndex,i]];
-            enemys.Add(enemy);
-            enemy.transform.position = point[waveIndex].wavePosition[i];
-        }
+    IEnumerator Fade(){
+        yield return new WaitForSeconds(5.5f);
+        panel.DOFade(1, 1f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(1);
     }
 
     /* public void SetEnemy(float scale, Vector2 pos,float angle){
@@ -59,22 +79,56 @@ public class MobSpawner : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, angle));
     } */
 
-    IEnumerator Spawn(){
-        while(true){
-            print(EnemyCntCheck());
-            if(EnemyCntCheck()){
-                EnemySet(waveIndex);
+    IEnumerator Spawn()
+    {
+        while (true)
+        {
+            print(realWaveIndex);
+            if (!_specialPattern)
+            {
+                if(EnemyCntCheck()){
+                    EnemySet(waveIndex);
                 waveIndex++;
+                }
             }
-            yield return new WaitForSeconds(nextStageTime);
+            if(realWaveIndex%5==0){
+                print(realWaveIndex);
+                _specialPattern = true;
+            }
+
+            if(_specialPattern){
+                StartCoroutine(ShootBulletPattern());
+            }
+            yield return new WaitUntil(()=>!_specialPattern);
+            yield return new WaitUntil(()=>EnemyCntCheck());
+            realWaveIndex++;
         }
     }
 
-    private bool EnemyCntCheck(){
-        if(enemys.Count == 0){
+    IEnumerator ShootBulletPattern(){
+        int shootCnt = 0;
+        while(shootCnt!=4){
+            GameObject obj = Instantiate(laser);
+            float rand = UnityEngine.Random.Range(0, 360);
+
+            obj.transform.position = shootPos[shootCnt].position;
+            obj.transform.rotation = Quaternion.Euler(0,0,rand);
+            yield return new WaitForSeconds(1f);
+            shootCnt++;
+        }
+        realWaveIndex++;
+
+        _specialPattern = false;
+    }
+
+    private bool EnemyCntCheck()
+    {
+        if (enemys.Count == 0)
+        {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }

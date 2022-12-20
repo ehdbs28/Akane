@@ -19,9 +19,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private PlayerController _playerController;
 
-    public bool IsDie {get; set;}
+    public bool IsDie { get; set; }
 
-    private void Awake() {
+    private void Awake()
+    {
         _spriteRenderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         _currentHP = _maxHP;
         _damageDelayTime = new WaitForSeconds(_damageDelay);
@@ -32,10 +33,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         UIManager.Instance.SetPlayerHP(_currentHP);
     }
 
+    private void Start()
+    {
+        UIManager.Instance.SetPlayerHP(_currentHP);
+    }
     public void OnDamage(float damage)
-    {   
-        if(IsDie) return;
-        
+    {
+        if (IsDie) return;
+
         _currentHP -= damage;
         UIManager.Instance.SetPlayerHP(_currentHP);
         SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "PlayerOuch");
@@ -47,12 +52,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         attackParticle.SetPosition(transform.position);
         attackParticle.Play();
 
-        if(_currentHP <= 0){
+        if (_currentHP <= 0)
+        {
             OnDie();
         }
     }
 
-    private IEnumerator DamageCoroutine(){
+    private IEnumerator DamageCoroutine()
+    {
         _spriteRenderer.material = _whiteFlashMat;
         yield return _damageDelayTime;
         _spriteRenderer.material = _originMat;
@@ -71,5 +78,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "GameOver");
         SoundManager.Instance.StopBGM();
         UIManager.Instance.GameOver(transform.position);
+    }
+    
+    private void CallBack()
+    {
+        _playerController.Animator.SetBool("IsDie", false);
+
+        _playerController.enabled = false;
     }
 }
