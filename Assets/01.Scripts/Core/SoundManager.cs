@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     private void Start() {
         _bgmSource = Camera.main.GetComponent<AudioSource>();
         if(GameManager.Instance.CurrentScene == 1) PlayBGM(GameManager.Instance.BossPhase1BGM);
+        else PlayBGM(GameManager.Instance.TutorialBGM);
     }
 
     public void StopBGM(){
