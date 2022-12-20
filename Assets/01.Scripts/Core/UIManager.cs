@@ -29,6 +29,9 @@ public class UIManager : MonoBehaviour
     private GameObject _gameOverPanel;
     private RectTransform _gameOverPlayer;
 
+    private GameObject _gameClearPanel;
+    private RectTransform _gameClearBoss;
+
     public float DodgeSliderValue => _playerDodgeSlider.value;
 
     private Sequence _sequence;
@@ -44,12 +47,20 @@ public class UIManager : MonoBehaviour
         _gameOverPanel = _canvas.transform.Find("GameOverPanel").gameObject;
         _gameOverPlayer =_gameOverPanel.transform.Find("PlayerDieSprite").GetComponent<RectTransform>();
 
+        _gameClearPanel = _canvas.transform.Find("GameClearPanel").gameObject;
+        _gameClearBoss = _gameClearPanel.transform.Find("BossDieSprite").GetComponent<RectTransform>(); 
+
         BossCutSceneUP();
     }
 
     public void GameOver(Vector3 playerPos){
         _gameOverPlayer.anchoredPosition = CalcAnchoredPosition(playerPos);
         _gameOverPanel.SetActive(true);
+    }
+
+    public void GameClear(Vector3 bossPos){
+        _gameClearBoss.anchoredPosition = CalcAnchoredPosition(bossPos);
+        _gameClearPanel.SetActive(true);
     }
 
     private Vector3 CalcAnchoredPosition(Vector3 playerPos){

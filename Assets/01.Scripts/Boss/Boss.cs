@@ -75,10 +75,19 @@ public class Boss : MonoBehaviour, IDamageable
 
     public void OnDie(){
         IsDie = true;
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "GameOver");
         StartCoroutine(ShowOutLine(1f, false));
         _rigid.velocity = Vector2.zero;
         _rigid.bodyType = RigidbodyType2D.Static;
         _animator.SetBool("IsDie", true);
+        Invoke("BossCallBack", 1.3f);
+    }
+
+    private void BossCallBack(){
+        GameManager.Instance.IsGameStop = true;
+        SoundManager.Instance.StopBGM();
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "GameClear");
+        UIManager.Instance.GameClear(transform.position);
     }
 
     private IEnumerator ShowOutLine(float duration, bool show){
