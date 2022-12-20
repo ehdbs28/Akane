@@ -14,6 +14,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public AudioClip BossPhase1BGM {get; private set;}
     public AudioClip BossPhase2BGM {get; private set;}
+    public AudioClip TutorialBGM {get; private set;}
 
     public int CurrentScene {get; private set;} 
 
@@ -45,6 +46,9 @@ public class GameManager : MonoSingleton<GameManager>
 
             BossPhase1BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase1BGM");
             BossPhase2BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase2BGM");
+        }
+        else{
+            TutorialBGM = Resources.Load<AudioClip>("AudioClip/BGM/TutorialBGM");
         }
     }
 
