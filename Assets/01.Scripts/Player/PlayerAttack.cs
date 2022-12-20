@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     private PlayerController _controller;
     private WeaponRotation _weaponController;
 
+    Animator anim;
+
     private LayerMask _targetLayer;
 
     private bool isAttack;
@@ -27,6 +29,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private Transform attackPos;
     [SerializeField] private float _playerDamage;
+
+    public GameObject parti;
 
     public float angle = 0;
     public float speed = 2f;
@@ -48,9 +52,15 @@ public class PlayerAttack : MonoBehaviour
         _targetLayer = LayerMask.GetMask("Enemy");
         _controller = FindObjectOfType<PlayerController>();
         _weaponController = transform.Find("AttackPos").GetComponent<WeaponRotation>();
-
+        anim = GetComponent<Animator>();
         StartCoroutine(Attack());
         StartCoroutine(Dodge());
+    }
+
+    public void isDone(){
+        anim.runtimeAnimatorController = null;
+        GameObject obj = Instantiate(parti,transform.position, Quaternion.identity);
+        obj.GetComponent<ParticleSystem>().Play();
     }
 
     IEnumerator Attack()
