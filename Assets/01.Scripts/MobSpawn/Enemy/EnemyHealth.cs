@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private SpriteRenderer spriteRenderer;
 
     private void Awake() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void Start() {
         enemy = gameObject.GetComponent<EnemyBase>().enemy;
@@ -41,6 +41,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         EnemyBase enemyBase = GetComponent<EnemyBase>();
         enemyBase.IsDie = true;
         MobSpawner.Instance.enemys.Remove(enemyBase);
+
         enemyBase.DissolveOffFunc();
     }
 

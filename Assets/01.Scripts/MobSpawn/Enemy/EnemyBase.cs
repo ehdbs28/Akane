@@ -20,7 +20,7 @@ public class EnemyBase : Poolable
     {
         Debug.Log($"{this.name} : excute method Reset");
         IsDie = false;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         _material = sr.material;
         sr.color = Color.white;
         _material.SetFloat("_Dissolve", 0);
@@ -116,6 +116,7 @@ public class EnemyBase : Poolable
             {
                 float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg + -90;
                 GameObject bullet = Instantiate(bulletPrefabs, transform.position, Quaternion.Euler(0, 0, angle));
+                GetComponentInChildren<Animator>().SetTrigger("Attack");
             }
             else
             {
@@ -128,6 +129,7 @@ public class EnemyBase : Poolable
         if(!enemy.isFar){
             if(other.CompareTag("Player")){
                 other.GetComponent<PlayerHealth>().OnDamage(.5f);
+                GetComponentInChildren<Animator>().SetTrigger("Attack");
             }
         }
     }
