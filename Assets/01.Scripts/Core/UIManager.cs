@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    [SerializeField] private Canvas _canvas;
+
     [SerializeField] private TextMeshProUGUI _playerHPTxt;
     [SerializeField] private Slider _playerDodgeSlider;
 
@@ -24,6 +26,9 @@ public class UIManager : MonoBehaviour
     private RectTransform _playerNameBG;
     private RectTransform _playerNameTxt;
 
+    private GameObject _gameOverPanel;
+    private RectTransform _gameOverPlayer;
+
     public float DodgeSliderValue => _playerDodgeSlider.value;
 
     private Sequence _sequence;
@@ -36,7 +41,28 @@ public class UIManager : MonoBehaviour
         _playerImg = _bossCutScenePanel.transform.Find("Player").Find("PlayerImg").GetComponent<RectTransform>();
         _playerNameBG = _playerImg.parent.Find("PlayerNameBackGround").GetComponent<RectTransform>();
 
-        //BossCutSceneUP();
+        _gameOverPanel = _canvas.transform.Find("GameOverPanel").gameObject;
+        _gameOverPlayer =_gameOverPanel.transform.Find("PlayerDieSprite").GetComponent<RectTransform>();
+
+        BossCutSceneUP();
+    }
+
+    public void GameOver(Vector3 playerPos){
+        _gameOverPlayer.anchoredPosition = CalcAnchoredPosition(playerPos);
+        _gameOverPanel.SetActive(true);
+    }
+
+    private Vector3 CalcAnchoredPosition(Vector3 playerPos){
+        Vector2 viewPortPosition = Camera.main.WorldToViewportPoint(playerPos);
+        RectTransform canvasRect = _canvas.GetComponent<RectTransform>();
+        Vector2 worldObj_ScreenPos = new Vector2((viewPortPosition.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f),
+        (viewPortPosition.y * canvasRect.sizeDelta.y) - (canvasRect.sizeDelta.y * 0.5f));
+
+        return worldObj_ScreenPos;
+    }
+
+    public void GameClear(){
+
     }
 
     public void SetPlayerHP(float hp){

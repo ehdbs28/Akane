@@ -19,6 +19,15 @@ public class SoundManager : MonoBehaviour
         PlayBGM(GameManager.Instance.BossPhase1BGM);
     }
 
+    public void StopBGM(){
+        _bgmSource.Stop();
+    }
+
+    public void BGMPause(bool pause){
+        if(pause) _bgmSource.Pause();
+        else _bgmSource.UnPause();
+    }
+
     public void PlayBGM(AudioClip clip){
         _bgmSource.clip = clip;
         _bgmSource.loop = true;

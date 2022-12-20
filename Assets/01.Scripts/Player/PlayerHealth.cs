@@ -63,5 +63,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         IsDie = true;
 
         _playerController.Animator.SetBool("IsDie", true);
+        Invoke("DieCallBack", 0.3f);
+    }
+
+    private void DieCallBack(){
+        GameManager.Instance.IsGameStop = true;
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "GameOver");
+        SoundManager.Instance.StopBGM();
+        UIManager.Instance.GameOver(transform.position);
     }
 }
