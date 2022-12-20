@@ -58,6 +58,9 @@ public class PlayerAttack : MonoBehaviour
         while (!_playerHealth.IsDie)
         {
             yield return new WaitUntil(() => Input.GetMouseButton(0));
+
+            SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "PlayerAttack");
+
             slash.Play();
             _weaponController.WeaponAttack();
             _weaponController.IsWeaponSlash = true;
@@ -99,6 +102,8 @@ public class PlayerAttack : MonoBehaviour
             yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
 
             if(UIManager.Instance.DodgeSliderValue > 0){
+                SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "Whoosh");
+
                 UIManager.Instance.DodgeSliderValueSet(UIManager.Instance.DodgeSliderValue - 0.2f);
 
                 slash.Play();

@@ -40,6 +40,8 @@ public class RollAttackAction : AIAction
     }
 
     private void BulletCreatePattern(){
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.BossSource, "BulletSpawn");
+
         int startAngle = 0;
         int endAngle = 360;
         int angleInterval = (_brain.Boss.IsPhase) ? 36 : 60;

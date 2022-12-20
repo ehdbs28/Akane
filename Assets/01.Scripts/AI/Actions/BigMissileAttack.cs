@@ -31,6 +31,8 @@ public class BigMissileAttack : AIAction
             _brain.Animator.SetFloat("WaitTime", _waitTime);
         }
         else{
+            SoundManager.Instance.PlayOneShot(GameManager.Instance.BossSource, "BulletSpawn");
+            
             BigBullet bullet = PoolManager.Instance.Pop("BigBullet") as BigBullet;
             bullet.transform.position = originPos;
             if(_brain.Boss.IsPhase) bullet.BulletSpeed = 10; 

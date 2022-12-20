@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         
         _currentHP -= damage;
         UIManager.Instance.SetPlayerHP(_currentHP);
-
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "PlayerOuch");
         CameraManager.Instance.CameraShake(5f, 0.1f);
 
         StartCoroutine(DamageCoroutine());

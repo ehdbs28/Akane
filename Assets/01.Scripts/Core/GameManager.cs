@@ -8,6 +8,12 @@ public class GameManager : MonoSingleton<GameManager>
 
     public bool IsGameStop {get => IsGameStop; set => GameStop(value); }
 
+    public AudioSource PlayerSource {get; private set;}
+    public AudioSource BossSource {get; private set;}
+
+    public AudioClip BossPhase1BGM {get; private set;}
+    public AudioClip BossPhase2BGM {get; private set;}
+
     private void Awake() {
         foreach(Poolable poolable in _poolList){
             PoolManager.Instance.CreatePool(poolable, transform);
@@ -23,6 +29,14 @@ public class GameManager : MonoSingleton<GameManager>
 
         TimeScaleManager.Instance = new GameObject(nameof(TimeScaleManager)).AddComponent<TimeScaleManager>();
         TimeScaleManager.Instance.transform.SetParent(transform.parent);
+
+        SoundManager.Instance = transform.parent.Find(nameof(SoundManager)).GetComponent<SoundManager>();
+
+        PlayerSource = GameObject.Find("Player").GetComponent<AudioSource>();
+        BossSource = GameObject.Find("Boss").GetComponent<AudioSource>();
+
+        BossPhase1BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase1BGM");
+        BossPhase2BGM = Resources.Load<AudioClip>("AudioClip/BGM/BossPhase2BGM");
     }
 
     private void GameStop(bool gameStop){

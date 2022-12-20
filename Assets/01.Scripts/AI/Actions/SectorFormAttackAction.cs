@@ -30,6 +30,8 @@ public class SectorFormAttackAction : AIAction
         _startAngle = Mathf.Atan2(_targetPos.y, _targetPos.x) * Mathf.Rad2Deg - ((_brain.Boss.IsPhase) ? 0 : _angleInterval);
         _endAngle = Mathf.Atan2(_targetPos.y, _targetPos.x) * Mathf.Rad2Deg + ((_brain.Boss.IsPhase) ? 360 : _angleInterval);
 
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.BossSource, "BulletSpawn");
+
         for(float angle = _startAngle; angle <= _endAngle; angle += _angleInterval){
             Vector3 spawnPos = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
 

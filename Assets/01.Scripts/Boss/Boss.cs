@@ -44,6 +44,8 @@ public class Boss : MonoBehaviour, IDamageable
 
         _currentHP -= damage;
         UIManager.Instance.SetBossHP(_currentHP);
+        SoundManager.Instance.PlayOneShot(GameManager.Instance.BossSource, "MonsterHit");
+
 
         StartCoroutine(DamageCoroutine());
 
@@ -58,6 +60,9 @@ public class Boss : MonoBehaviour, IDamageable
 
         if(_currentHP <= _phase2HP){
             if(!IsPhase){
+                SoundManager.Instance.PlayOneShot(GameManager.Instance.BossSource, "BossPhase2");
+                SoundManager.Instance.PlayBGM(GameManager.Instance.BossPhase2BGM);
+                
                 StartCoroutine(BossPhase2(3f));
                 return;
             }
