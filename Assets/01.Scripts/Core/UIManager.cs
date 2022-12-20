@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerHPTxt;
     [SerializeField] private Slider _playerDodgeSlider;
 
+    [SerializeField] private Slider _bossHPSlider_BackGround;
+    [SerializeField] private Slider _bossHPSlider;
+
     [SerializeField] private Image _bossCutScenePanel;
     private RectTransform _bossImg;
     private RectTransform _bossNameBG;
@@ -47,9 +50,53 @@ public class UIManager : MonoBehaviour
         });
     }
 
+    public void SetBossHP(float value){
+        StartCoroutine(BossHPDownEffect(value));
+    }
+
+    private IEnumerator BossHPDownEffect(float value){
+        float currentTime = 0;
+        float currentValue = _bossHPSlider.value;
+
+        while(currentTime <= 0.5f){
+            currentTime += Time.deltaTime;
+            _bossHPSlider.value = Mathf.Lerp(currentValue, value, currentTime / 0.5f);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        currentTime = 0;
+        while(currentTime <= 0.5f){
+            currentTime += Time.deltaTime;
+            _bossHPSlider_BackGround.value = Mathf.Lerp(currentValue, value, currentTime / 0.5f);
+            yield return null;
+        }
+    }
+
     public void DodgeSliderValueSet(float value){
         value = Mathf.Clamp(value, _playerDodgeSlider.minValue, _playerDodgeSlider.maxValue);
         _playerDodgeSlider.value = value;
+    }
+
+    private IEnumerator DodgeSliderDownEffect(float value){
+        float currentTime = 0;
+        float currentValue = _bossHPSlider.value;
+
+        while(currentTime <= 0.5f){
+            currentTime += Time.deltaTime;
+            _bossHPSlider.value = Mathf.Lerp(currentValue, value, currentTime / 0.5f);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        currentTime = 0;
+        while(currentTime <= 0.5f){
+            currentTime += Time.deltaTime;
+            _bossHPSlider_BackGround.value = Mathf.Lerp(currentValue, value, currentTime / 0.5f);
+            yield return null;
+        }
     }
 
     ///<summary>

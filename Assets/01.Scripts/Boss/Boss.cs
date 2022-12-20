@@ -43,6 +43,7 @@ public class Boss : MonoBehaviour, IDamageable
         if(IsDie || IsPhaseCutScene) return;
 
         _currentHP -= damage;
+        UIManager.Instance.SetBossHP(_currentHP);
 
         StartCoroutine(DamageCoroutine());
 
@@ -61,7 +62,7 @@ public class Boss : MonoBehaviour, IDamageable
                 return;
             }
         }
-        
+
         if(_currentHP <= 0){
             OnDie();
         }
