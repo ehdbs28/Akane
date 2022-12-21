@@ -19,8 +19,6 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Animator Animator => animator;
     public Rigidbody2D Rigid => rb;
 
-    public float hp = 100f;
-
     private void Awake()
     {
         animator = transform.Find("PlayerSprite").GetComponent<Animator>();

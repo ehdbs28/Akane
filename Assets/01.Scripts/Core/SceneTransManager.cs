@@ -26,6 +26,7 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
         
         while(!asyncOperation.isDone) yield return null;
 
-        yield return new WaitForSecondsRealtime(1f);
+        panel = GameObject.Find("Canvas/Fade").GetComponent<Image>();
+        panel.DOFade(0, 1f).SetUpdate(true);
     }
 }

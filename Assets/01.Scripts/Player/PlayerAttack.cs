@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerHealth _playerHealth;
     private WeaponRotation _weaponController;
 
-    Animator anim;
+    static Animator anim;
 
     private LayerMask _targetLayer;
 
@@ -57,10 +57,22 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(Dodge());
     }
 
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Y)){
+            IsClear();
+        }
+    }
+
     public void isDone(){
-        anim.runtimeAnimatorController = null;
+        if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Appear")) return;
+        anim.enabled = false;
         GameObject obj = Instantiate(parti,transform.position, Quaternion.identity);
         obj.GetComponent<ParticleSystem>().Play();
+    }
+
+    public static void IsClear(){
+        anim.enabled = true;
+        anim.Play("DisAppear");
     }
 
     IEnumerator Attack()

@@ -53,17 +53,20 @@ public class MobSpawner : MonoBehaviour
             SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "MonsterSpawn");
             for (int i = 0; i < point[waveIndex].enemyCount; i++)
             {
-            EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
-            enemy.enemy = datas[waveEnemyDatas[waveIndex, i]];
-            enemy.GetComponentInChildren<EnemyAnimationChooser>().Chooser();
-            enemys.Add(enemy);
-            enemy.transform.position = point[waveIndex].wavePosition[i];
+                EnemyBase enemy = PoolManager.Instance.Pop("Enemy") as EnemyBase;
+                enemy.enemy = datas[waveEnemyDatas[waveIndex, i]];
+                enemy.GetComponentInChildren<EnemyAnimationChooser>().Chooser();
+                enemys.Add(enemy);
+                enemy.transform.position = point[waveIndex].wavePosition[i];
             }
         }
         catch(ArgumentOutOfRangeException){
-            SceneTransManager.Instance.SceneChange("Main");
+            PlayerAttack.IsClear();
+            Invoke("SceneTransToMain", 0.5f);
         }
     }
+
+    private void SceneTransToMain() => SceneTransManager.Instance.SceneChange("Main");
 
     /* public void SetEnemy(float scale, Vector2 pos,float angle){
         transform.position = pos;
@@ -91,7 +94,6 @@ public class MobSpawner : MonoBehaviour
                 }
             }
             if(realWaveIndex%5==0){
-                print(realWaveIndex);
                 _specialPattern = true;
             }
 

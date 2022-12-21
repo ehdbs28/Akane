@@ -13,12 +13,15 @@ public class EnemyBase : Poolable
 
     Material _material;
     private float _fade = 0;
+
+    private bool _isStartAttack = false;
     private bool isDie;
     public bool IsDie { get => isDie; set => isDie = value; }
 
     public override void Reset()
     {
         IsDie = false;
+        _isStartAttack = false;
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         _material = sr.material;
         sr.color = Color.white;
@@ -31,9 +34,10 @@ public class EnemyBase : Poolable
 
     IEnumerator DissolveOn(){
         while(!IsDie){
-            _fade += 0.05f;
+            _fade += 0.01f;
             if(_fade >= 1){
                 _fade = 1;
+                _isStartAttack = true;
                 StopCoroutine(DissolveOn());
             }
             _material.SetFloat("_Dissolve",_fade);
@@ -60,7 +64,7 @@ public class EnemyBase : Poolable
 
     private void Update()
     {
-        EnemyMove();
+        if(_isStartAttack) EnemyMove();
     }
 
     private bool AttackCheck()
@@ -127,8 +131,8 @@ public class EnemyBase : Poolable
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(!enemy.isFar){
-            if(other.CompareTag("Player")){
-                other.GetComponent<PlayerHealth>().OnDamage(.5f);
+            if(other.CompareTag("Player") && _isStartAttack){
+                other.GetComponent<PlayerHealth>().OnDamage(1f);
                 GetComponentInChildren<Animator>().SetTrigger("Attack");
             }
         }
@@ -136,6 +140,7 @@ public class EnemyBase : Poolable
 
     private IEnumerator AttackRoutine()
     {
+        yield return new WaitUntil(() => _isStartAttack);
         while (!IsDie)
         {
             if (AttackCheck())

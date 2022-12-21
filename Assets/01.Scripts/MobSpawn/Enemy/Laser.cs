@@ -5,11 +5,15 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     Material mat;
+    private Collider2D _collider;
+
     private void Awake() {
         mat = GetComponent<SpriteRenderer>().material;
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Start() {
+        _collider.enabled = false;
         StartCoroutine(Disappear());
     }
 
@@ -17,6 +21,9 @@ public class Laser : MonoBehaviour
         float _fade = 1.5f;
         while(true){
             _fade += 5;
+            if(_fade >= 300){
+                if(!_collider.enabled) _collider.enabled = true;
+            }
             if(_fade>=1000){
                 _fade = 1000;
                 StopCoroutine(Disappear());
