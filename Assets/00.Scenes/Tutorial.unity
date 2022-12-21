@@ -465,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 2140257918504419646, guid: 159e8b95a5ac4e1438d7a819ed970dde, type: 3}
     - target: {fileID: 6460314886053873607, guid: 25e6b8568f93b8841b3f39910939395b, type: 3}
       propertyPath: _playerDamage
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6460314886382717098, guid: 25e6b8568f93b8841b3f39910939395b, type: 3}
       propertyPath: m_RootOrder
@@ -3103,7 +3103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533162707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67175937, y: -1.1920505, z: -49.586277}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1703399304}

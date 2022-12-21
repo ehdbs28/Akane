@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         SoundManager.Instance.PlayOneShot(GameManager.Instance.PlayerSource, "PlayerOuch");
         CameraManager.Instance.CameraShake(5f, 0.1f);
 
+        AllKillBullet();
         StartCoroutine(DamageCoroutine());
 
         PoolingParticle attackParticle = PoolManager.Instance.Pop("AttackParticle") as PoolingParticle;
@@ -51,6 +52,16 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (_currentHP <= 0)
         {
             OnDie();
+        }
+    }
+
+    private void AllKillBullet(){
+        BossBullet[] bullets = GameManager.Instance.transform.GetComponentsInChildren<BossBullet>();
+
+        if(bullets.Length > 0){
+            foreach(BossBullet bullet in bullets){
+                bullet.DestroyBullet();
+            }
         }
     }
 
