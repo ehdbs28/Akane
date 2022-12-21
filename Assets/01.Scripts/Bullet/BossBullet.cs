@@ -31,7 +31,7 @@ public class BossBullet : Poolable
         deadParticle.Play(1f);
 
         float normalScale = 0.2f;
-        float particleScale = deadParticle.transform.localScale.x;
+        float particleScale = 1;
         float targetScale = transform.localScale.x; 
         float scale = particleScale * targetScale / normalScale;
 

@@ -34,7 +34,7 @@ public class EnemyBase : Poolable
 
     IEnumerator DissolveOn(){
         while(!IsDie){
-            _fade += 0.01f;
+            _fade += 0.05f;
             if(_fade >= 1){
                 _fade = 1;
                 _isStartAttack = true;

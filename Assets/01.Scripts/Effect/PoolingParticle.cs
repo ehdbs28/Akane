@@ -37,6 +37,7 @@ public class PoolingParticle : Poolable
     ///push to pull
     ///</summary>
     public void SetDisable(){
+        _particleSystem.Stop();
         PoolManager.Instance.Push(this);
     }
 
